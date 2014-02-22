@@ -1,0 +1,5 @@
+{
+  "name": "jquery-laziestloader",
+  "version": "0.0.1",
+  "main": ["jquery.laziestloader.js"]
+}

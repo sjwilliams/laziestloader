@@ -210,24 +210,24 @@
             <div class="example">
                 <h2>Responsive</h2>
                 <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/namibia-{{size}}.jpg" data-widths="[320, 640, 900, 1564]">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/namibia-{{size}}.jpg&quot; data-widths=&quot;[320, 640, 900, 1564]&quot;&gt;</code>
+                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
             </div>
            
             <div class="example small">
                 <h2>Responsive, smaller element</h2>
                 <p>Load a smaller image, if possible.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/namibia-{{size}}.jpg" data-widths="[320, 640, 900, 1564]">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/namibia-{{size}}.jpg&quot; data-widths=&quot;[320, 640, 900, 1564]&quot;&gt;</code>
+                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
             </div>
            
             <div class="example">
                 <h2>Responsive w/ Slugs</h2>
                 <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/images/2014/02/12/sports/olympics/20140212-OLYPOD-slide-CS72/20140212-OLYPOD-slide-CS72-{{size}}.jpg" data-widths='[{"size":1024,"slug":"jumbo"}, {"size":2000,
-                "slug":"superJumbo"}]'>
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;http://graphics8.nytimes.com/images/2014/02/12/sports/olympics/20140212-OLYPOD-slide-CS72/20140212-OLYPOD-slide-CS72-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:1024,&quot;slug&quot;:&quot;jumbo&quot;}, {&quot;size&quot;:2000,
-                &quot;slug&quot;:&quot;superJumbo&quot;}]'&gt;</code>
+                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900,
+                "slug":"medium"}, {"size":1500, "slug":"large"}]'>
+                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900,
+                &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;</code>
             </div>
 
             <div class="example">
@@ -307,21 +307,6 @@ $('div.override').laziestloader({
 });
                 </pre>
             </div>
-
-            <div class="example">
-                <h2>Lots of images</h2>
-                <img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/albania-{{size}}.jpg" data-widths="[320, 640, 900, 1564]">
-            </div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/vietnam-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/rotterdam-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/fernando-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/scotland-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/ishigaki-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/indonesia-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/yorkshire-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/vatican-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/uruguay-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
-            <div class="example"><img class="lazy" src="img/transparent.gif" data-pattern="http://graphics8.nytimes.com/newsgraphics/2014/01/12/places-to-go/assets/images/iceland-{{size}}.jpg" data-widths="[320, 640, 900, 1564]"></div>
         </section>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')</script>

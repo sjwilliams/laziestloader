@@ -1,5 +1,15 @@
 {
-  "name": "jquery-laziestloader",
+  "name": "laziestloader",
   "version": "0.0.1",
-  "main": ["jquery.laziestloader.js"]
+  "homepage": "https://github.com/sjwilliams/laziestloader",
+  "authors": [
+      "Josh Williams <contact@joshwilliams.com>"
+  ],
+  "description": "A responsive-aware jQuery plugin to smartly lazy load images and other elements.",
+  "main": "jquery.laziestloader.js",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "jquery": ">=1.7"
+  }
 }

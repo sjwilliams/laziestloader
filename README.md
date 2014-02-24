@@ -132,5 +132,10 @@ You can trigger element loading whenever you need, without needed to scroll the 
 $("img").trigger("laziestloader");
 ```
 
+## Release History
+*0.0.1*
+
+* Initial release.
+
 ###License
 LaziestLoader is licensed under the [MIT license](http://opensource.org/licenses/MIT).

@@ -1,3 +1,8 @@
+/*! LaziestLoader - v0.0.1 - 2014-02-23
+* A responsive-aware jQuery plugin to smartly lazy load images and other elements.
+* https://github.com/sjwilliams/laziestloader
+* Thanks to Luís Almeida's for 'unveil,' on which this project is based.
+* Copyright (c) 2014 Josh Williams; Licensed MIT */
 ;(function($) {
 
   var laziestLoader = function(options, callback) {
@@ -15,20 +20,20 @@
 
     /**
      * Generate source path of image to load. Take into account
-     * type of data supplied and whether or not a retina 
+     * type of data supplied and whether or not a retina
      * image is available.
      *
      * Basic option: data attributes specifing a single image to load,
-     * regardless of viewport. 
+     * regardless of viewport.
      * Eg:
-     * 
+     *
      * <img data-src="yourimage.jpg">
      * <img data-src="yourimage.jpg" data-src-retina="yourretinaimage.jpg">
      *
      * Range of sizes: specify a string path with a {{size}} that
      * will be replaced by an integer from a list of available sizes.
      * Eg:
-     * 
+     *
      * <img data-pattern="path/toyourimage-{{size}}.jpg" data-size="[320, 640, 970]">
      * <img data-pattern="path/toyourimage-{{size}}.jpg" data-pattern-retina="path/toyourimage-{{size}}@2x.jpg" data-size="[320, 640, 970]">
      * <img data-pattern="path/toyourimage/{{size}}/slug.jpg" data-pattern-retina="path/toyourimage/{{size}}/slug@2x.jpg" data-size="[320, 640, 970]">
@@ -36,9 +41,9 @@
      * Range of sizes, with slugs: specify a string path with a {{size}} that
      * will be replaced by a slug representing an image size.
      * Eg:
-     * 
+     *
      * <img data-pattern="path/toyourimage-{{size}}.jpg" data-size="[{width: 320, slug: 'small'},{width:900, slug: 'large'}]">
-     * 
+     *
      * @param  {jQuery object} $el
      * @return {String}
      */
@@ -79,8 +84,8 @@
     }
 
     /**
-     * Attach event handler that sets correct 
-     * media source for the elements' width, or 
+     * Attach event handler that sets correct
+     * media source for the elements' width, or
      * allows callback to manipulate element
      * exclusively.
      */
@@ -115,14 +120,14 @@
 
     /**
      * Find the best sized image, opting for larger over smaller
-     * 
+     *
      * @param  {Number} targetWidth element width
      * @param  {Array} widths      available sizes
      * @return {Number}
      */
     function bestFit(targetWidth, widths) {
       var selectedWidth = widths[widths.length - 1],
-          i = widths.length; 
+          i = widths.length;
       while (i--) {
         if (targetWidth <= widths[i]) {
             selectedWidth = widths[i];
@@ -133,7 +138,7 @@
     }
 
     /**
-     * Cycle through elements that haven't had their 
+     * Cycle through elements that haven't had their
      * source set and, if they're in the viewport within
      * the threshold, load their media
      */

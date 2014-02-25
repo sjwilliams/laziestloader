@@ -1,16 +1,24 @@
-/*! LaziestLoader - v0.0.1 - 2014-02-23
-* A responsive-aware jQuery plugin to smartly lazy load images and other elements.
-* https://github.com/sjwilliams/laziestloader
-* Thanks to Luís Almeida for 'unveil,' on which this project is based.
-* Copyright (c) 2014 Josh Williams; Licensed MIT */
-;(function($) {
+/*! LaziestLoader - v0.0.2 - 2014-02-25
+ * A responsive-aware jQuery plugin to smartly lazy load images and other elements.
+ * https://github.com/sjwilliams/laziestloader
+ * Thanks to Luís Almeida for 'unveil,' on which this project is based.
+ * Copyright (c) 2014 Josh Williams; Licensed MIT
+ */
+
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else {
+    factory(jQuery);
+  }
+}(function($) {
 
   var laziestLoader = function(options, callback) {
 
     var $w = $(window),
-        $elements = this,
-        $loaded = $(), // elements with the correct source set
-        retina = window.devicePixelRatio > 1;
+      $elements = this,
+      $loaded = $(), // elements with the correct source set
+      retina = window.devicePixelRatio > 1;
 
     options = $.extend(true, {
       threshold: 0,
@@ -47,6 +55,7 @@
      * @param  {jQuery object} $el
      * @return {String}
      */
+
     function getSource($el) {
       var source, slug;
       var data = $el.data();
@@ -89,6 +98,7 @@
      * allows callback to manipulate element
      * exclusively.
      */
+
     function bindLoader() {
       $elements.one('laziestloader', function() {
         var source;
@@ -114,6 +124,7 @@
     /**
      * Remove even handler from elements
      */
+
     function unbindLoader() {
       $elements.off('laziestloader');
     }
@@ -125,12 +136,13 @@
      * @param  {Array} widths      available sizes
      * @return {Number}
      */
+
     function bestFit(targetWidth, widths) {
       var selectedWidth = widths[widths.length - 1],
-          i = widths.length;
+        i = widths.length;
       while (i--) {
         if (targetWidth <= widths[i]) {
-            selectedWidth = widths[i];
+          selectedWidth = widths[i];
         }
       }
 
@@ -142,6 +154,7 @@
      * source set and, if they're in the viewport within
      * the threshold, load their media
      */
+
     function laziestloader() {
       var $inview = $elements.not($loaded).filter(function() {
         var $el = $(this);
@@ -149,9 +162,9 @@
         if ($el.is(':hidden')) return;
 
         var wt = $w.scrollTop(),
-            wb = wt + $w.height(),
-            et = $el.offset().top,
-            eb = et + $el.height();
+          wb = wt + $w.height(),
+          et = $el.offset().top,
+          eb = et + $el.height();
 
         return eb >= wt - th && et <= wb + th;
       });
@@ -166,7 +179,7 @@
       var data = $el.data();
       var height;
       if (data.heightMultiplier) {
-        height = Math.round( $el.width() * data.heightMultiplier );
+        height = Math.round($el.width() * data.heightMultiplier);
         $el.css({
           height: height
         });
@@ -180,7 +193,7 @@
     $w.scroll(laziestloader);
 
     // reset state on resize
-    $w.resize(function(){
+    $w.resize(function() {
       $loaded = $();
       unbindLoader();
       bindLoader();
@@ -192,6 +205,6 @@
     return this;
   };
 
-  $.fn.laziestloader = $.fn.laziestLoader = $.fn.LaziestLoader = laziestLoader;
+  $.fn.laziestloader = laziestLoader;
 
-})(window.jQuery || window.Zepto);
+}));

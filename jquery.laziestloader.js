@@ -3,7 +3,7 @@
 * https://github.com/sjwilliams/laziestloader
 * Thanks to Luís Almeida for 'unveil,' on which this project is based.
 * Copyright (c) 2014 Josh Williams; Licensed MIT */
-;(function($) {
+(function($) {
 
   var laziestLoader = function(options, callback) {
 
@@ -130,7 +130,7 @@
           i = widths.length;
       while (i--) {
         if (targetWidth <= widths[i]) {
-            selectedWidth = widths[i];
+          selectedWidth = widths[i];
         }
       }
 

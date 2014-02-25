@@ -9,7 +9,7 @@
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
   } else {
-    factory(window.jQuery);
+    factory(jQuery);
   }
 }(function($) {
 

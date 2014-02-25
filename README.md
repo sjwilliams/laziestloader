@@ -133,6 +133,11 @@ $("img").trigger("laziestloader");
 ```
 
 ## Release History
+*0.0.2*
+
+* AMD module
+* Enforce style with .editorconfig, .jshintrc and .jsbeautifyrc
+
 *0.0.1*
 
 * Initial release.

@@ -1,10 +1,17 @@
-/*! LaziestLoader - v0.0.1 - 2014-02-23
+/*! LaziestLoader - v0.0.2 - 2014-02-25
  * A responsive-aware jQuery plugin to smartly lazy load images and other elements.
  * https://github.com/sjwilliams/laziestloader
  * Thanks to Luís Almeida for 'unveil,' on which this project is based.
  * Copyright (c) 2014 Josh Williams; Licensed MIT
  */
-(function($) {
+
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else {
+    factory(window.jQuery);
+  }
+}(function($) {
 
   var laziestLoader = function(options, callback) {
 
@@ -200,4 +207,4 @@
 
   $.fn.laziestloader = laziestLoader;
 
-})(window.jQuery || window.Zepto);
+}));

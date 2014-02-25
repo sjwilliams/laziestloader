@@ -1,0 +1,17 @@
+{
+  "name": "laziestloader",
+  "version": "0.0.2",
+  "author": "Josh Williams <contact@joshwilliams.com>",
+  "description": "A responsive-aware jQuery plugin to smartly lazy load images and other elements.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sjwilliams/laziestloader.git"
+  },
+  "keywords": [
+    "jquery",
+    "scroll",
+    "images",
+    "lazyload"
+  ],
+  "license": "MIT"
+}

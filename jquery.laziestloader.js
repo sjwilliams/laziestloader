@@ -1,4 +1,4 @@
-/*! LaziestLoader - v0.0.2 - 2014-02-25
+/*! LaziestLoader - v0.1.0 - 2014-03-28
  * A responsive-aware jQuery plugin to smartly lazy load images and other elements.
  * https://github.com/sjwilliams/laziestloader
  * Thanks to Luís Almeida for 'unveil,' on which this project is based.
@@ -23,6 +23,7 @@
     options = $.extend(true, {
       threshold: 0,
       getSource: getSource,
+      sizeOffsetPercent: 0, // prefer smaller images
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
     }, options);
 
@@ -139,9 +140,10 @@
 
     function bestFit(targetWidth, widths) {
       var selectedWidth = widths[widths.length - 1],
-        i = widths.length;
+        i = widths.length,
+        offset = targetWidth * (options.sizeOffsetPercent/100);
       while (i--) {
-        if (targetWidth <= widths[i]) {
+        if ( (targetWidth - offset) <= widths[i]) {
           selectedWidth = widths[i];
         }
       }

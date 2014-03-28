@@ -112,6 +112,12 @@ If you want your images to load earlier than that, lets say 200px before they ap
 $("img").laziestloader({threshold: 200});
 ```
 
+###sizeOffsetPercent
+The crop selection logic works by picking the image that is greater than or equal to the size of the current element. If you prefer to scale smaller images into larger elements, set this between 0 and 100, where the value is the percent width of the containing element you want to subtract from the math logic. The bigger the number, the smaller the image that'll be selected.
+```javascript
+$("img").laziestloader({sizeOffsetPercent: 10});
+```
+
 ####setSourceMode
 In most cases, the plugin needs to set the source attribute of the element. If you want to use the plugin in ways that don't involve simply setting a source attribute, set `setSourceMode` to false and use the callback to completely manage the behavior of the element on trigger.
 

@@ -118,6 +118,12 @@ The crop selection logic works by picking the image that is greater than or equa
 $("img").laziestloader({sizeOffsetPercent: 10});
 ```
 
+###sizePattern
+The regular expression to search for in your string, to be replace by the width number or slug.
+```javascript
+$("img").laziestloader({sizePattern: /{{SIZE}}/ig});
+```
+
 ####setSourceMode
 In most cases, the plugin needs to set the source attribute of the element. If you want to use the plugin in ways that don't involve simply setting a source attribute, set `setSourceMode` to false and use the callback to completely manage the behavior of the element on trigger.
 
@@ -139,6 +145,14 @@ $("img").trigger("laziestloader");
 ```
 
 ## Release History
+*0.1.1*
+
+* Added `sizePattern` option.
+
+*0.1.0*
+
+* Added `sizeOffsetPercent` option.
+
 *0.0.2*
 
 * AMD module

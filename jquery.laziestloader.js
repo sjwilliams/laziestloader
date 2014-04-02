@@ -22,6 +22,7 @@
 
     options = $.extend(true, {
       threshold: 0,
+      sizePattern: /{{SIZE}}/ig,
       getSource: getSource,
       sizeOffsetPercent: 0, // prefer smaller images
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
@@ -81,9 +82,9 @@
             }
           })();
 
-          source = source.replace(/{{SIZE}}/ig, slug);
+          source = source.replace(options.sizePattern, slug);
         } else {
-          source = source.replace(/{{SIZE}}/ig, bestFit($el.width(), data.widths));
+          source = source.replace(options.sizePattern, bestFit($el.width(), data.widths));
         }
       } else {
         source = retina ? data.srcRetina : data.src;

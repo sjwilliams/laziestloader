@@ -119,9 +119,9 @@ $("img").laziestloader({sizeOffsetPercent: 10});
 ```
 
 ###sizePattern
-The regular expression to search your string, to be replaced by the width number or slug.
+The regular expression used to search your string, to be replaced by the width number or slug. The default is `/{{SIZE}}/ig`, which finds the string `size`, regardless of case, inside of '{' style double brackets. Example: `/path/name-{{size}}.jpg`. Changing this option is useful if, for example, you have Mustache-style templates rendered on the server that would also match the default laziestloader.js pattern and be rendered blank before our client code runs. Many characters have special meaning and can't be used. A nice alternal pattern is:
 ```javascript
-$("img").laziestloader({sizePattern: /{{SIZE}}/ig});
+$("img").laziestloader({sizePattern: /%size%/ig});
 ```
 
 ####setSourceMode

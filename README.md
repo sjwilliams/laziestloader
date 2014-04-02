@@ -119,7 +119,7 @@ $("img").laziestloader({sizeOffsetPercent: 10});
 ```
 
 ###sizePattern
-The regular expression to search for in your string, to be replace by the width number or slug.
+The regular expression to search your string, to be replaced by the width number or slug.
 ```javascript
 $("img").laziestloader({sizePattern: /{{SIZE}}/ig});
 ```

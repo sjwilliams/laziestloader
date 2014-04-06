@@ -23,9 +23,9 @@
     h1{
         font-size: 36px;
         line-height: 36px;
-        margin: 0 0 5px 0;    
+        margin: 0 0 5px 0;
     }
-    
+
     h1 + p {
         margin: 0;
     }
@@ -37,7 +37,7 @@
         font-size: 17px;
         line-height: 19px;
     }
-    
+
     p {
         margin: 15px auto;
     }
@@ -70,7 +70,7 @@
         list-style: decimal-leading-zero;
         padding: 0;
     }
-    
+
     div.example {
         width: 100%;
         margin-top: 50px;
@@ -114,7 +114,7 @@
         font-family: courier;
         font-size: 12px;
     }
-    
+
     .intro code, .intro pre.code{
         margin-left: 0;
         max-width: 100%;
@@ -138,7 +138,7 @@
         user-select: none;
         z-index: 11;
     }
-   
+
    .message > p{
         display: inline-block;
         margin: 0;
@@ -150,7 +150,7 @@
         font-size: 10px;
         text-transform: uppercase;
     }
-   
+
     #status{
         position: fixed;
         width: 70%;
@@ -246,14 +246,14 @@
                 <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
                 <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;</code>
             </div>
-               
+
             <div class="example">
                 <h2>Non-responsive w/ Retina</h2>
                 <p>Specify a standard and an optional retina image.</p>
                 <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
                 <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;</code>
             </div>
- 
+
             <div class="example small">
                 <h2>Non-responsive w/ Retina, smaller element</h2>
                 <p>Basic example always loads the same image, regardess of element width.</p>
@@ -267,21 +267,19 @@
                 <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
                 <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
             </div>
-           
+
             <div class="example small">
                 <h2>Responsive, smaller element</h2>
                 <p>Load a smaller image, if possible.</p>
                 <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
                 <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
             </div>
-           
+
             <div class="example">
                 <h2>Responsive w/ Slugs</h2>
                 <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900,
-                "slug":"medium"}, {"size":1500, "slug":"large"}]'>
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900,
-                &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;</code>
+                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
+                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;</code>
             </div>
 
             <div class="example">
@@ -379,7 +377,7 @@ $('div.override').laziestloader({
 
             // standard methods
             $('.lazy').laziestloader({threshold:300}, cb);
-            
+
             // iframe
             $('.iframe').laziestloader({
                 threshold:300,
@@ -396,7 +394,6 @@ $('div.override').laziestloader({
                 }
             }, cb);
 
-            
             // override
             $('div.override').laziestloader({
                 threshold: 100,

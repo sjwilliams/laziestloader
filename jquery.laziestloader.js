@@ -75,8 +75,8 @@
             var bestFitWidth = bestFit($el.width(), widths);
 
             // match best width back to its corresponding slug
-            for (var i = widths.length - 1; i >= 0; i--) {
-              if (widths[i] === bestFitWidth) {
+            for (var i = data.widths.length - 1; i >= 0; i--) {
+              if (data.widths[i].size === bestFitWidth) {
                 return data.widths[i].slug;
               }
             }
@@ -134,8 +134,8 @@
     /**
      * Find the best sized image, opting for larger over smaller
      *
-     * @param  {Number} targetWidth element width
-     * @param  {Array} widths      available sizes
+     * @param  {Number} targetWidth   element width
+     * @param  {Array} widths         array of numbers
      * @return {Number}
      */
 
@@ -143,6 +143,12 @@
       var selectedWidth = widths[widths.length - 1],
         i = widths.length,
         offset = targetWidth * (options.sizeOffsetPercent/100);
+
+      // sort smallest to largest
+      widths.sort(function(a,b){
+        return a - b;
+      });
+
       while (i--) {
         if ( (targetWidth - offset) <= widths[i]) {
           selectedWidth = widths[i];

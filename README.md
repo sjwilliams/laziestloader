@@ -145,6 +145,10 @@ $("img").trigger("laziestloader");
 ```
 
 ## Release History
+*0.1.2*
+
+* Fixed [Issue 1](https://github.com/sjwilliams/laziestloader/issues/1), bug with non-sorted input. 
+
 *0.1.1*
 
 * Added `sizePattern` option.

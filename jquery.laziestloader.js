@@ -18,12 +18,14 @@
     var $w = $(window),
       $elements = this,
       $loaded = $(), // elements with the correct source set
-      retina = window.devicePixelRatio > 1;
+      retina = window.devicePixelRatio > 1,
+      didScroll = false;
 
     options = $.extend(true, {
       threshold: 0,
       sizePattern: /{{SIZE}}/ig,
       getSource: getSource,
+      scrollThrottle: 250, // time in ms to throttle scroll. Increase for better performance.
       sizeOffsetPercent: 0, // prefer smaller images
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
     }, options);
@@ -142,15 +144,15 @@
     function bestFit(targetWidth, widths) {
       var selectedWidth = widths[widths.length - 1],
         i = widths.length,
-        offset = targetWidth * (options.sizeOffsetPercent/100);
+        offset = targetWidth * (options.sizeOffsetPercent / 100);
 
       // sort smallest to largest
-      widths.sort(function(a,b){
+      widths.sort(function(a, b) {
         return a - b;
       });
 
       while (i--) {
-        if ( (targetWidth - offset) <= widths[i]) {
+        if ((targetWidth - offset) <= widths[i]) {
           selectedWidth = widths[i];
         }
       }
@@ -199,7 +201,19 @@
     $elements.each(setHeight);
 
     bindLoader();
-    $w.scroll(laziestloader);
+
+
+    // throttled scroll events
+    $w.scroll(function() {
+      didScroll = true;
+    });
+
+    setInterval(function() {
+      if (didScroll) {
+        didScroll = false;
+        laziestloader();
+      }
+    }, options.scrollThrottle);
 
     // reset state on resize
     $w.resize(function() {

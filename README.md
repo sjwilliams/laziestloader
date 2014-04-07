@@ -112,19 +112,25 @@ If you want your images to load earlier than that, lets say 200px before they ap
 $("img").laziestloader({threshold: 200});
 ```
 
-###sizeOffsetPercent
+####scrollThrottle
+To increase performance, the position of lazy loading elements are only checked every 250ms while scrolling. If you need to perform the check more often, lower the number. If scroll performance is an issue -- likely if there are lots of elements -- increase the number.
+```javascript
+$("img").laziestloader({scrollThrottle: 300});
+```
+
+####sizeOffsetPercent
 The crop selection logic works by picking the image that is greater than or equal to the size of the current element. If you prefer to scale smaller images into larger elements, set this between 0 and 100, where the value is the percent width of the containing element you want to subtract from the math logic. The bigger the number, the smaller the image that'll be selected.
 ```javascript
 $("img").laziestloader({sizeOffsetPercent: 10});
 ```
 
-###sizePattern
+####sizePattern
 The regular expression used to search your string, to be replaced by the width number or slug. The default is `/{{SIZE}}/ig`, which finds the string `size`, regardless of case, inside of '{' style double brackets. Example: `/path/name-{{size}}.jpg`. Changing this option is useful if, for example, you have Mustache-style templates rendered on the server that would also match the default laziestloader.js pattern and be rendered blank before our client code runs. Many characters have special meaning and can't be used. A nice alternal pattern is:
 ```javascript
 $("img").laziestloader({sizePattern: /%size%/ig});
 ```
 
-####setSourceMode
+#####setSourceMode
 In most cases, the plugin needs to set the source attribute of the element. If you want to use the plugin in ways that don't involve simply setting a source attribute, set `setSourceMode` to false and use the callback to completely manage the behavior of the element on trigger.
 
 ```html
@@ -145,6 +151,10 @@ $("img").trigger("laziestloader");
 ```
 
 ## Release History
+*0.1.3*
+
+* Added a scrollThrottle option, and set a reasonable default. See [Issue 5](https://github.com/sjwilliams/laziestloader/issues/5). 
+
 *0.1.2*
 
 * Fixed [Issue 1](https://github.com/sjwilliams/laziestloader/issues/1), bug with non-sorted input. 

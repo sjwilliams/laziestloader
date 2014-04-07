@@ -169,7 +169,7 @@
     function laziestloader() {
       var $inview = $elements.not($loaded).filter(function() {
         var $el = $(this),
-          th = options.threshold;
+          threshold = options.threshold;
 
         if ($el.is(':hidden')) return;
 
@@ -178,7 +178,7 @@
           et = $el.offset().top,
           eb = et + $el.height();
 
-        return eb >= wt - th && et <= wb + th;
+        return eb >= wt - threshold && et <= wb + threshold;
       });
 
       $inview.trigger('laziestloader');

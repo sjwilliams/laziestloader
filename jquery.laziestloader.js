@@ -108,7 +108,7 @@
         var source;
 
         // set height?
-        if ($(this).data().heightMultiplier) {
+        if ($(this).data().ratio) {
           setHeight.call(this);
         }
 
@@ -168,8 +168,9 @@
 
     function laziestloader() {
       var $inview = $elements.not($loaded).filter(function() {
-        var $el = $(this);
-        var th = options.threshold;
+        var $el = $(this),
+          th = options.threshold;
+
         if ($el.is(':hidden')) return;
 
         var wt = $w.scrollTop(),
@@ -186,13 +187,14 @@
 
 
     function setHeight() {
-      var $el = $(this);
-      var data = $el.data();
-      var height;
-      if (data.heightMultiplier) {
-        height = Math.round($el.width() * data.heightMultiplier);
+      var $el = $(this),
+        data = $el.data();
+
+      data.ratio = data.ratio || data.heightMultiplier; // backwards compatible for old data-height-multiplier code.
+
+      if (data.ratio) {
         $el.css({
-          height: height
+          height: Math.round($el.width() * data.ratio)
         });
       }
     }

@@ -79,9 +79,9 @@ $("img").laziestloader({
 });
 ```
 ####Set Element Height
-Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. If the `data-height-multiplierr` attribute contains a number, the element will have its CSS height set to the width of the element multiplied by the `data-height-multiplierr`.
+Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. If the `data-ratio` attribute contains a number, the element will have its CSS height set to the width of the element multiplied by the `data-ratio`.
 ```html
-<img src="transparent.gif" data-src="img1.jpg" data-height-multiplier="0.5625">
+<img src="transparent.gif" data-src="img1.jpg" data-ratio="0.5625">
 ```
 ```javascript
 $("img").laziestloader();
@@ -154,6 +154,7 @@ $("img").trigger("laziestloader");
 *0.1.3*
 
 * Added a scrollThrottle option, and set a reasonable default. See [Issue 5](https://github.com/sjwilliams/laziestloader/issues/5). 
+* Changed data-height-multiplier to data-ratio, and deprecated original. See [Issue 6](https://github.com/sjwilliams/laziestloader/issues/6).
 
 *0.1.2*
 

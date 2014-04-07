@@ -328,11 +328,11 @@ $(&quot;img.custom&quot;).laziestloader({
 
             <div class="example">
                 <h2>Set Element Height Programmatically</h2>
-                <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-height-multiplier' vaule. <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em></p>
-                <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-height-multiplier="0.5625" frameborder="0" allowfullscreen></iframe>
+                <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule. <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em></p>
+                <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
                 <pre class="code">
 // html
-&lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/fNlxKH9Jtmc&quot; data-height-multiplier=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/fNlxKH9Jtmc&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
 // js
 $('.iframe').laziestloader({threshold:300});

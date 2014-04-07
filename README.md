@@ -151,7 +151,7 @@ $("img").trigger("laziestloader");
 ```
 
 ## Release History
-*0.1.3*
+*0.2.0*
 
 * Added a scrollThrottle option, and set a reasonable default. See [Issue 5](https://github.com/sjwilliams/laziestloader/issues/5). 
 * Changed data-height-multiplier to data-ratio, and deprecated original. See [Issue 6](https://github.com/sjwilliams/laziestloader/issues/6).

@@ -141,7 +141,7 @@
      * @return {Number}
      */
 
-    function bestFit(targetWidth, widths) {
+    var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
       var selectedWidth = widths[widths.length - 1],
         i = widths.length,
         offset = targetWidth * (options.sizeOffsetPercent / 100);
@@ -158,7 +158,7 @@
       }
 
       return selectedWidth;
-    }
+    };
 
     /**
      * Cycle through elements that haven't had their

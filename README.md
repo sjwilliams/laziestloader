@@ -151,6 +151,10 @@ $("img").trigger("laziestloader");
 ```
 
 ## Release History
+*0.3.0*
+
+* Exposed `bestFit` method so it can be used in callbacks.  See [Issue 4](https://github.com/sjwilliams/laziestloader/issues/4). 
+
 *0.2.0*
 
 * Added a scrollThrottle option, and set a reasonable default. See [Issue 5](https://github.com/sjwilliams/laziestloader/issues/5). 

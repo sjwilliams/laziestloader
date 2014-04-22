@@ -47,6 +47,8 @@ The result would be along these lines:
 <img src="path/to/yourimages/900/image.jpg">
 ```
 
+Note: LaziestLoader will use the width of the image element to detect which size fits.
+
 #####2b. Responsive, by file slug
 If you have different versions of your image with width represented by a slug, you can specify an array of sizes and corresponding slugs.
 ```html

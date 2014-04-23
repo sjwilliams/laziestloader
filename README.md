@@ -47,7 +47,7 @@ The result would be along these lines:
 <img src="path/to/yourimages/900/image.jpg">
 ```
 
-Note: LaziestLoader will use the width of the image element to detect which size fits.
+**_Note:_** LaziestLoader uses the calculated width of the element to detect the best size from `data-widths`. It's important to ensure your element, especially inline elements like images that don't automatically assume 100% of their parent's width, are given a width before LaziestLoader is called the first time, otherwise the calculation will be wrong, and probably too small. [More details.](https://github.com/sjwilliams/laziestloader/issues/10)
 
 #####2b. Responsive, by file slug
 If you have different versions of your image with width represented by a slug, you can specify an array of sizes and corresponding slugs.

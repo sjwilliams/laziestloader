@@ -1,292 +1,277 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width">
-        <title>Be Lazy, my friends</title>
-    </head>
 
-    <style>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Be Lazy, my friends</title>
+</head>
 
-    body {
-        background: #FFF;
-        color: #555;
-        font-family: "Helvetica Neue", sans-serif;
-        font-weight: 300;
-        line-height: 1.5;
-        padding: 90px 30px 300px 30px;
-        margin: 0 auto;
-        max-width: 1400px;
+<style>
+body {
+    background: #FFF;
+    color: #555;
+    font-family:"Helvetica Neue", sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    padding: 90px 30px 300px 30px;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+h1 {
+    font-size: 36px;
+    line-height: 36px;
+    margin: 0 0 5px 0;
+}
+h1 + p {
+    margin: 0;
+}
+h2 {
+    color: #333;
+    margin-top: 100px;
+    margin-bottom: 1px;
+    font-size: 17px;
+    line-height: 19px;
+}
+p {
+    margin: 15px auto;
+}
+h2 + p {
+    margin-top: 5px;
+}
+a {
+    color: #3595b5;
+}
+strong {
+    font-size: 1.5em;
+    color: #CCC;
+}
+code > span.red {
+    color: #D14;
+}
+code > span.blue {
+    color: #099;
+}
+code > span.purple {
+    color: #C0C;
+}
+ol {
+    list-style: decimal-leading-zero;
+    padding: 0;
+}
+div.example {
+    width: 100%;
+    margin-top: 50px;
+}
+div.example:first-child {
+    /*margin-top: 0;*/
+}
+div.example:first-child h2 {
+    /*margin-top: 30px;*/
+}
+div.example > p {
+    max-width: 680px;
+    margin: 0 0 9px 0;
+}
+div.example > img, div.example > video, div.example > iframe {
+    display: block;
+    width: 100%;
+}
+div.example.small {
+    width: 60%;
+    margin: auto;
+}
+code, pre.code {
+    display: block;
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+    text-align: left;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    font-family: courier;
+    font-size: 12px;
+}
+.intro code, .intro pre.code {
+    margin-left: 0;
+    max-width: 100%;
+}
+section > p {
+    max-width: 900px;
+    font-family: Georgia;
+}
+.message {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 11px;
+    padding: 5px 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    z-index: 11;
+}
+.message > p {
+    display: inline-block;
+    margin: 0;
+}
+.message p .kicker {
+    font-weight: bold;
+    padding-right: 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+#status {
+    position: fixed;
+    width: 70%;
+    left: 15%;
+    top: 10px;
+    -webkit-transform: translateZ(0);
+}
+#justloaded {
+    margin-left: 15px;
+}
+@-webkit-keyframes pulse {
+    0% {
+        background-color: #45CEEF;
     }
-
-    h1{
-        font-size: 36px;
-        line-height: 36px;
-        margin: 0 0 5px 0;
+    25% {
+        background-color: #FFF5A5;
     }
-
-    h1 + p {
-        margin: 0;
+    50% {
+        background-color: #FFD4DA;
     }
-
-    h2 {
-        color: #333;
-        margin-top: 100px;
-        margin-bottom: 1px;
-        font-size: 17px;
-        line-height: 19px;
+    75% {
+        background-color: #99D2E4;
     }
-
-    p {
-        margin: 15px auto;
+    100% {
+        background-color: #D8CAB4;
     }
-
-    h2 + p {
-        margin-top: 5px;
-    }
-
-    a {
-        color: #3595b5;
-    }
-    strong {
-        font-size: 1.5em;
-        color: #CCC;
-    }
-
-    code > span.red {
-        color: #D14;
-    }
-
-    code > span.blue {
-        color: #099;
-    }
-
-    code > span.purple {
-        color: #C0C;
-    }
-
-    ol {
-        list-style: decimal-leading-zero;
-        padding: 0;
-    }
-
-    div.example {
-        width: 100%;
-        margin-top: 50px;
-    }
-
-    div.example:first-child{
-        /*margin-top: 0;*/
-    }
-
-    div.example:first-child h2 {
-        /*margin-top: 30px;*/
-    }
-
-    div.example > p {
-        max-width: 680px;
-        margin: 0 0 9px 0;
-    }
-
-    div.example > img, div.example > video, div.example > iframe {
-        display: block;
-        width: 100%;
-    }
-
-     div.example.small {
-        width: 60%;
-        margin: auto;
-     }
-
-    code, pre.code{
-        display: block;
-        max-width: 900px;
-        margin: 10px auto;
-        padding: 6px 10px;
-        border-radius: 3px;
-        text-align: left;
-        background-color: #f8f8f8;
-        border: 1px solid #ddd;
-        font-size: 13px;
-        line-height: 19px;
-        overflow: auto;
-        font-family: courier;
-        font-size: 12px;
-    }
-
-    .intro code, .intro pre.code{
-        margin-left: 0;
-        max-width: 100%;
-    }
-
-    section > p{
-        max-width: 900px;
-        font-family: Georgia;
-    }
-
-    .message{
-        border-radius: 5px;
-        background-color: rgba(0,0,0,0.8);
-        color: #fff;
-        font-size: 11px;
-        padding: 5px 10px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -o-user-select: none;
-        user-select: none;
-        z-index: 11;
-    }
-
-   .message > p{
-        display: inline-block;
-        margin: 0;
-    }
-
-    .message p .kicker{
-        font-weight: bold;
-        padding-right: 8px;
-        font-size: 10px;
-        text-transform: uppercase;
-    }
-
-    #status{
-        position: fixed;
-        width: 70%;
-        left: 15%;
-        top: 10px;
-        -webkit-transform: translateZ(0);
-    }
-
-    #justloaded{
-        margin-left: 15px;
-    }
-
-    @-webkit-keyframes pulse {
-          0% {background-color: #45CEEF;}
-         25% {background-color: #FFF5A5;}
-         50% {background-color: #FFD4DA;}
-         75% {background-color: #99D2E4;}
-         100% {background-color: #D8CAB4;}
-    }
-
-
-    #forkongithub a {
-        background:#000;
-        color:#fff;
-        text-decoration:none;
-        font-family:arial, sans-serif;
-        text-align:center;
-        font-weight:bold;
-        padding:5px 40px;
-        font-size:1rem;
-        line-height:2rem;
-        position:relative;
-        transition:0.5s;
-    }
-    #forkongithub a:hover {
-        background:#060;
-        color:#fff;
-    }
-    #forkongithub a::before, #forkongithub a::after {
-        content:"";
-        width:100%;
-        display:block;
+}
+#forkongithub a {
+    background:#000;
+    color:#fff;
+    text-decoration:none;
+    font-family:arial, sans-serif;
+    text-align:center;
+    font-weight:bold;
+    padding:5px 40px;
+    font-size:1rem;
+    line-height:2rem;
+    position:relative;
+    transition:0.5s;
+}
+#forkongithub a:hover {
+    background:#060;
+    color:#fff;
+}
+#forkongithub a::before, #forkongithub a::after {
+    content:"";
+    width:100%;
+    display:block;
+    position:absolute;
+    top:1px;
+    left:0;
+    height:1px;
+    background:#fff;
+}
+#forkongithub a::after {
+    bottom:1px;
+    top:auto;
+}
+@media screen and (min-width:800px) {
+    #forkongithub {
         position:absolute;
-        top:1px;
-        left:0;
-        height:1px;
-        background:#fff;
+        display:block;
+        top:0;
+        right:0;
+        width:200px;
+        overflow:hidden;
+        height:200px;
     }
-    #forkongithub a::after {
-        bottom:1px;
-        top:auto;
+    #forkongithub a {
+        width:200px;
+        position:absolute;
+        top:60px;
+        right:-60px;
+        transform:rotate(45deg);
+        -webkit-transform:rotate(45deg);
+        box-shadow:3px 4px 10px rgba(0, 0, 0, 0.8);
     }
-    @media screen and (min-width:800px) {
-        #forkongithub {
-            position:absolute;
-            display:block;
-            top:0;
-            right:0;
-            width:200px;
-            overflow:hidden;
-            height:200px;
-        }
-        #forkongithub a {
-            width:200px;
-            position:absolute;
-            top:60px;
-            right:-60px;
-            transform:rotate(45deg);
-            -webkit-transform:rotate(45deg);
-            box-shadow:3px 4px 10px rgba(0, 0, 0, 0.8);
-        }
-    }
-
- </style>
+}
+</style>
 
 
-    <body>
-        <div id="status" class="message">
-            <p><span class="kicker">Elements loaded</span> <span id="total"></span></p>
-            <p id="justloaded"></p>
+<body>
+    <div id="status" class="message">
+        <p>
+            <span class="kicker">Elements loaded</span>
+            <span id="total"></span>
+        </p>
+        <p id="justloaded"></p>
+    </div>
+    <h1>LaziestLoader, be lazy my friend</h1>
+    <p>LaziestLoader is a responive-aware lazy loader, mostly for images... but it'll do lots of other things, too.</p>
+    <section>
+        <div class="example intro">
+            <h2>Instantiate Plugin</h2>
+            <p>Call the plugin on a jQuery selection. Optionally, specify a 'threshold' in the options object, which triggers a load x number of pixels before the item scrolls into the viewport.</p>
+            <code>$('.lazy').laziestloader({threshold:300});</code>
         </div>
-        <h1>LaziestLoader, be lazy my friend</h1>
-        <p>LaziestLoader is a responive-aware lazy loader, mostly for images... but it'll do lots of other things, too.</p>
-        <section>
-            <div class="example intro">
-                <h2>Instantiate Plugin</h2>
-                <p>Call the plugin on a jQuery selection. Optionally, specify a 'threshold' in the options object, which triggers a load x number of pixels before the item scrolls into the viewport.</p>
-                <code>$('.lazy').laziestloader({threshold:300});</code>
-            </div>
-            <div class="example">
-                <h2>Non-responsive</h2>
-                <p>The most basic method simply sets the src attribute as the element enters the viewport.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;</code>
-            </div>
+        <div class="example">
+            <h2>Non-responsive</h2>
+            <p>The most basic method simply sets the src attribute as the element enters the viewport.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
+            <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;</code>
+        </div>
 
-            <div class="example">
-                <h2>Non-responsive w/ Retina</h2>
-                <p>Specify a standard and an optional retina image.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;</code>
-            </div>
+        <div class="example">
+            <h2>Non-responsive w/ Retina</h2>
+            <p>Specify a standard and an optional retina image.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
+            <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;</code>
+        </div>
 
-            <div class="example small">
-                <h2>Non-responsive w/ Retina, smaller element</h2>
-                <p>Basic example always loads the same image, regardess of element width.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;</code>
-            </div>
+        <div class="example small">
+            <h2>Non-responsive w/ Retina, smaller element</h2>
+            <p>Basic example always loads the same image, regardess of element width.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png">
+            <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;</code>
+        </div>
 
-            <div class="example">
-                <h2>Responsive</h2>
-                <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
-            </div>
+        <div class="example">
+            <h2>Responsive</h2>
+            <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
+            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+            <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
+        </div>
 
-            <div class="example small">
-                <h2>Responsive, smaller element</h2>
-                <p>Load a smaller image, if possible.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
-            </div>
+        <div class="example small">
+            <h2>Responsive, smaller element</h2>
+            <p>Load a smaller image, if possible.</p>
+            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+            <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
+        </div>
 
-            <div class="example">
-                <h2>Responsive w/ Slugs</h2>
-                <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;</code>
-            </div>
+        <div class="example">
+            <h2>Responsive w/ Slugs</h2>
+            <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
+            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
+            <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;</code>
+        </div>
 
-            <div class="example">
-                <h2>Callback</h2>
-                <p>Pass in a callback to excute custom code after the src attribute has been changed. That's how the fancy black bar above works.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/5a5a5a/fff.png">
-                <pre class="code">
+        <div class="example">
+            <h2>Callback</h2>
+            <p>Pass in a callback to excute custom code after the src attribute has been changed. That's how the fancy black bar above works.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/5a5a5a/fff.png">
+            <pre class="code">
 //html
 &lt;img class=&quot;callback&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/5a5a5a/fff.png&quot;&gt;
 
@@ -297,13 +282,13 @@ $(&quot;img.callback&quot;).laziestloader({ threshold: 100}, function() {
     $(&quot;#total&quot;).html(totalLoaded);
 });
                 </pre>
-            </div>
+        </div>
 
-            <div class="example">
-                <h2>Custom Source Function</h2>
-                <p>Need fancier logic to determine the source path? You can write your own.</p>
-                <img class="custom" src="img/transparent.gif">
-                <pre class="code">
+        <div class="example">
+            <h2>Custom Source Function</h2>
+            <p>Need fancier logic to determine the source path? You can write your own.</p>
+            <img class="custom" src="img/transparent.gif">
+            <pre class="code">
 //html
 &lt;img class=&quot;custom&quot; src=&quot;img/transparent.gif&quot;&gt;
 
@@ -317,13 +302,13 @@ $(&quot;img.custom&quot;).laziestloader({
     }
 });
                 </pre>
-            </div>
+        </div>
 
-            <div class="example">
-                <h2>Best Fit</h2>
-                <p>The best-fit method used internally can also be used in your callbacks and custom source functions. Pass in a target width and an array of possible values to find the best value.</p>
-                <img class="bestfit" src="img/transparent.gif">
-                <pre class="code">
+        <div class="example">
+            <h2>Best Fit</h2>
+            <p>The best-fit method used internally can also be used in your callbacks and custom source functions. Pass in a target width and an array of possible values to find the best value.</p>
+            <img class="bestfit" src="img/transparent.gif">
+            <pre class="code">
 //html
 &lt;img class=&quot;bestfit&quot; src=&quot;img/transparent.gif&quot;&gt;
 
@@ -337,35 +322,37 @@ $(&quot;img.bestfit&quot;).laziestloader({
     }
 });
                 </pre>
-            </div>
+        </div>
 
-            <div class="example">
-                <h2>Video</h2>
-                <p>Images aren't the only things with 'src' attributes. Try a video.</p>
-                <video class="lazy" autoplay loop data-pattern="http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4" data-widths="[640, 900]"></video>
-                <pre class="code">&lt;video class=&quot;lazy&quot; autoplay loop data-pattern=&quot;http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4&quot; data-widths=&quot;[640, 900]&quot;&gt;&lt;/video&gt;</pre>
-            </div>
+        <div class="example">
+            <h2>Video</h2>
+            <p>Images aren't the only things with 'src' attributes. Try a video.</p>
+            <video class="lazy" autoplay loop data-pattern="http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4" data-widths="[640, 900]"></video>
+            <pre class="code">&lt;video class=&quot;lazy&quot; autoplay loop data-pattern=&quot;http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4&quot; data-widths=&quot;[640, 900]&quot;&gt;&lt;/video&gt;</pre>
+        </div>
 
-            <div class="example">
-                <h2>Set Element Height Programmatically</h2>
-                <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule. <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em></p>
-                <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
-                <pre class="code">
+        <div class="example">
+            <h2>Set Element Height Programmatically</h2>
+            <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule.
+                <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em>
+            </p>
+            <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
+            <pre class="code">
 // html
 &lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/fNlxKH9Jtmc&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
 // js
 $('.iframe').laziestloader({threshold:300});
                 </pre>
-            </div>
+        </div>
 
 
 
-            <div class="example">
-                <h2>Completely Custom Behavior /w Callback</h2>
-                <p>Need more control than custom source path generation? For example, you might want to completely rewrite the contents of your element. You can have your callback do all the work, sidestepping much of LaziestLoader's functionality.</p>
-                <div class="override"></div>
-                <pre class="code">
+        <div class="example">
+            <h2>Completely Custom Behavior /w Callback</h2>
+            <p>Need more control than custom source path generation? For example, you might want to completely rewrite the contents of your element. You can have your callback do all the work, sidestepping much of LaziestLoader's functionality.</p>
+            <div class="override"></div>
+            <pre class="code">
 // html
 &lt;div class=&quot;override&quot;&gt;&lt;/div&gt;
 
@@ -378,63 +365,69 @@ $('div.override').laziestloader({
     $(this).html('&lt;p style=&quot;text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;&quot;&gt;Boom!&lt;/p&gt;')
 });
                 </pre>
-            </div>
-        </section>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="jquery.laziestloader.js"></script>
+        </div>
+    </section>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')
+    </script>
+    <script src="jquery.laziestloader.js"></script>
 
-        <script>
-        $(function() {
-            var totalLoaded = 0;
+    <script>
+    $(function() {
+        var totalLoaded = 0;
 
-            var cb = function () {
-                totalLoaded += 1;
-                var src = ( $(this).attr('src') ) ? $(this).attr('src') : 'Custom content';
-                $('#justloaded').show().html('<span class="kicker">Loading</span>'+src).stop(true, true).delay(700).fadeOut(1500);
-                $('#total').html(totalLoaded);
-            };
+        var cb = function() {
+            totalLoaded += 1;
+            var src = ($(this).attr('src')) ? $(this).attr('src') : 'Custom content';
+            $('#justloaded').show().html('<span class="kicker">Loading</span>' + src).stop(true, true).delay(700).fadeOut(1500);
+            $('#total').html(totalLoaded);
+        };
 
-            // standard methods
-            $('.lazy').laziestloader({threshold:300}, cb);
+        // standard methods
+        $('.lazy').laziestloader({
+            threshold: 300
+        }, cb);
 
-            // iframe
-            $('.iframe').laziestloader({
-                threshold:300,
-                setHeight: true
-            },cb);
+        // iframe
+        $('.iframe').laziestloader({
+            threshold: 300,
+            setHeight: true
+        }, cb);
 
-            // custom methods
-            $('img.custom').laziestloader({
-                threshold: 100,
-                getSource: function($el) {
-                    var width = $el.width();
-                    var height = Math.round(width * 0.5625);
-                    return 'http://placekitten.com/'+width+'/'+height;
-                }
-            }, cb);
+        // custom methods
+        $('img.custom').laziestloader({
+            threshold: 100,
+            getSource: function($el) {
+                var width = $el.width();
+                var height = Math.round(width * 0.5625);
+                return 'http://placekitten.com/' + width + '/' + height;
+            }
+        }, cb);
 
-            // override
-            $('div.override').laziestloader({
-                threshold: 100,
-                setSourceMode: false
-            }, function(){
-                cb.call(this);
-                var height = Math.round($(this).width() * 0.5625);
-                $(this).html('<p style="text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;">Boom!</p>')
-            });
-
-            $('img.bestfit').laziestloader({
-                threshold: 100,
-                getSource: function($el) {
-                    var width = $().laziestloader.bestFit($el.width(), [200, 700, 900, 1200]);
-                    var height = Math.round(width * 0.5625);
-                    return 'http://placekitten.com/'+width+'/'+height;
-                }
-            }, cb);
+        // override
+        $('div.override').laziestloader({
+            threshold: 100,
+            setSourceMode: false
+        }, function() {
+            cb.call(this);
+            var height = Math.round($(this).width() * 0.5625);
+            $(this).html('<p style="text-align:center; height: ' + height + 'px; line-height:' + height + 'px;-webkit-animation: pulse 10s infinite alternate;">Boom!</p>')
         });
-        </script>
 
-        <div id="forkongithub"><a href="https://github.com/sjwilliams/laziestloader">Fork me on GitHub</a></div>
-    </body>
+        $('img.bestfit').laziestloader({
+            threshold: 100,
+            getSource: function($el) {
+                var width = $().laziestloader.bestFit($el.width(), [200, 700, 900, 1200]);
+                var height = Math.round(width * 0.5625);
+                return 'http://placekitten.com/' + width + '/' + height;
+            }
+        }, cb);
+    });
+    </script>
+
+    <div id="forkongithub"><a href="https://github.com/sjwilliams/laziestloader">Fork me on GitHub</a>
+    </div>
+</body>
+
 </html>

@@ -20,41 +20,34 @@ body {
     margin: 0 auto;
     max-width: 1400px;
 }
-
 h1 {
     font-size: 2.3rem;
     line-height: 2.5rem;
     margin: 0 0 18px 0;
 }
-
 h2 {
     color: #333;
     font-size: 1.1rem;
     line-height: 1.3rem;
     margin: 0 0 3px 0;
 }
-
-h2 span{
+h2 span {
     font-style: italic;
 }
-
-h3{
+h3 {
     font-size: 14px;
     line-height: 16px;
 }
-
-h4{
+h4 {
     color: #313131;
     font-size: 11px;
     line-height: 11px;
     text-transform: uppercase;
     margin: 20px 0 7px 0;
 }
-
 p {
     margin: 0 auto 1.1rem auto;
 }
-
 a {
     color: #965131;
 }
@@ -78,27 +71,21 @@ ol {
     padding-left: 28px;
     margin: 0;
 }
-
 ol ul, ul ul, ol ol {
     margin-bottom: 10px;
 }
-
 section {
     width: 100%;
     margin-bottom: 30px;
 }
-
-.intro{
+.intro {
     color: #000;
     max-width: 600px;
     margin-bottom: 30px;
-    /*font-family: Georgia;*/
 }
-
-.intro p{
+.intro p {
     margin-bottom: 0;
 }
-
 .example > p {
     max-width: 680px;
     margin: 0 0 9px 0;
@@ -127,19 +114,16 @@ code, .code {
     font-size: 12px;
     color: #fff;
 }
-
-li .code{
+li .code {
     display: inline;
     padding: 1px 3px;
 }
-
 .message {
     position: fixed;
     -webkit-transform: translateZ(0);
     width: 100%;
     left: 0;
     bottom: 0;
-
     color: #000;
     font-size: 11px;
     font-weight: bold;
@@ -149,20 +133,17 @@ li .code{
     -o-user-select: none;
     user-select: none;
     z-index: 11;
-
     border-top: 0px solid #000;
     background-color: #CCCAC3;
     padding: 0px 10px;
     height: 0;
     transition: all 0.4s ease;
 }
-
-.message.active{
-  border-top-width: 1px;
-  padding: 8px 10px;
-  height: auto;
+.message.active {
+    border-top-width: 1px;
+    padding: 8px 10px;
+    height: auto;
 }
-
 .message > p {
     display: inline-block;
     margin: 0;
@@ -172,21 +153,16 @@ li .code{
     font-weight: normal;
     padding-right: 8px;
     text-transform: uppercase;
-    /*letter-spacing: 1px;*/
 }
-
-
 #justloaded {
     visibility: hidden;
     margin-left: 15px;
 }
-
-@media all and (min-width: 700px)  {
-  #justloaded {
-    visibility: visible;
-  }
+@media all and (min-width: 700px) {
+    #justloaded {
+        visibility: visible;
+    }
 }
-
 @-webkit-keyframes pulse {
     0% {
         background-color: #45CEEF;
@@ -226,8 +202,10 @@ li .code{
 
         <h4>Download Options</h4>
         <ol>
-            <li><a href="">Minifed Source</a></li>
-            <li><a href="">Unminifed Source</a></li>
+            <li><a href="">Minifed Source</a>
+            </li>
+            <li><a href="">Unminifed Source</a>
+            </li>
             <li>
                 <span class="code">$ npm install laziestloader</span>
             </li>
@@ -242,7 +220,9 @@ li .code{
         <h2><span class="step">Step 2:</span> Image Prep</h2>
         <p>Imagine your source image is "pony.jpg" and your site has breakpoints that will load the image in a container element at 1300px, 900px or 640px. Save web-optimized versions of "pony.jpg" to those widths with your image editor.</p>
 
-        <p>While saving your files, you can name your file in any number of ways so long as the <em>width</em> or a <em>slug</em> that represents the width is included in the filename or path. The name doesn't matter, so long as the pattern is consistent.</p>
+        <p>While saving your files, you can name your file in any number of ways so long as the
+            <em>width</em>or a
+            <em>slug</em>that represents the width is included in the filename or path. The name doesn't matter, so long as the pattern is consistent.</p>
 
         <h4>Width Examples</h4>
         <ol>
@@ -268,11 +248,6 @@ li .code{
                 </ul>
             </li>
         </ol>
-
-
-
-
-
 
         <h4>Slug Examples</h4>
         <ol>
@@ -490,8 +465,8 @@ $('div.override').laziestloader({
         var totalLoaded = 0;
 
         var $w = $(window),
-          $status = $('#status'),
-          $examplesContainer = $('.examples');
+            $status = $('#status'),
+            $examplesContainer = $('.examples');
 
         var didScroll = false;
 
@@ -503,22 +478,22 @@ $('div.override').laziestloader({
         };
 
         var showStatus = function() {
-          if ($w.scrollTop() > $examplesContainer.offset().top) {
-            $status.addClass('active');
-          } else {
-            $status.removeClass('active');
-          }
+            if ($w.scrollTop() > $examplesContainer.offset().top) {
+                $status.addClass('active');
+            } else {
+                $status.removeClass('active');
+            }
         };
 
         $w.scroll(function() {
-          didScroll = true;
+            didScroll = true;
         });
 
         setInterval(function() {
-          if (didScroll) {
-            didScroll = false;
-            showStatus();
-          }
+            if (didScroll) {
+                didScroll = false;
+                showStatus();
+            }
         }, 100);
 
         // standard methods

@@ -177,7 +177,14 @@ li .code{
 
 
 #justloaded {
+    visibility: hidden;
     margin-left: 15px;
+}
+
+@media all and (min-width: 700px)  {
+  #justloaded {
+    visibility: visible;
+  }
 }
 
 @-webkit-keyframes pulse {

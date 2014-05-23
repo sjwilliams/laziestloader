@@ -134,38 +134,52 @@ li .code{
 }
 
 .message {
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    width: 100%;
+    left: 0;
+    bottom: 0;
+
+    color: #000;
     font-size: 11px;
-    padding: 5px 10px;
+    font-weight: bold;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
     z-index: 11;
+
+    border-top: 0px solid #000;
+    background-color: #CCCAC3;
+    padding: 0px 10px;
+    height: 0;
+    transition: all 0.4s ease;
 }
+
+.message.active{
+  border-top-width: 1px;
+  padding: 8px 10px;
+  height: auto;
+}
+
 .message > p {
     display: inline-block;
     margin: 0;
 }
 .message p .kicker {
-    font-weight: bold;
+    color: #000;
+    font-weight: normal;
     padding-right: 8px;
-    font-size: 10px;
     text-transform: uppercase;
+    /*letter-spacing: 1px;*/
 }
-#status {
-    position: fixed;
-    width: 70%;
-    left: 15%;
-    top: 10px;
-    -webkit-transform: translateZ(0);
-}
+
+
 #justloaded {
     margin-left: 15px;
 }
+
 @-webkit-keyframes pulse {
     0% {
         background-color: #45CEEF;
@@ -183,9 +197,7 @@ li .code{
         background-color: #D8CAB4;
     }
 }
-
 </style>
-
 
 <body>
     <div id="status" class="message">
@@ -470,12 +482,37 @@ $('div.override').laziestloader({
     $(function() {
         var totalLoaded = 0;
 
+        var $w = $(window),
+          $status = $('#status'),
+          $examplesContainer = $('.examples');
+
+        var didScroll = false;
+
         var cb = function() {
             totalLoaded += 1;
             var src = ($(this).attr('src')) ? $(this).attr('src') : 'Custom content';
             $('#justloaded').show().html('<span class="kicker">Loading</span>' + src).stop(true, true).delay(700).fadeOut(1500);
             $('#total').html(totalLoaded);
         };
+
+        var showStatus = function() {
+          if ($w.scrollTop() > $examplesContainer.offset().top) {
+            $status.addClass('active');
+          } else {
+            $status.removeClass('active');
+          }
+        };
+
+        $w.scroll(function() {
+          didScroll = true;
+        });
+
+        setInterval(function() {
+          if (didScroll) {
+            didScroll = false;
+            showStatus();
+          }
+        }, 100);
 
         // standard methods
         $('.lazy').laziestloader({

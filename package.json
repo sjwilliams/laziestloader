@@ -13,5 +13,11 @@
     "images",
     "lazyload"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "uglify-js": "^2.4.13"
+  },
+  "scripts": {
+    "build": "uglifyjs jquery.laziestloader.js -c -o jquery.laziestloader-min.js"
+  }
 }

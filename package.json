@@ -18,6 +18,6 @@
     "uglify-js": "^2.4.13"
   },
   "scripts": {
-    "build": "uglifyjs jquery.laziestloader.js -c --comments -o jquery.laziestloader-min.js"
+    "build": "uglifyjs jquery.laziestloader.js -c --comments -o jquery.laziestloader.min.js"
   }
 }

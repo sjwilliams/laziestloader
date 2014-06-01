@@ -1,292 +1,469 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width">
-        <title>Be Lazy, my friends</title>
-    </head>
 
-    <style>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>LaziestLoader, a responsive and retina-aware lazy loader for jQuery</title>
+</head>
 
-    body {
-        background: #FFF;
-        color: #555;
-        font-family: "Helvetica Neue", sans-serif;
-        font-weight: 300;
-        line-height: 1.5;
-        padding: 90px 30px 300px 30px;
-        margin: 0 auto;
-        max-width: 1400px;
-    }
+<style>
+body {
+    background: #FDFAF2;
+    color: #555;
+    font-family:"Helvetica Neue", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4em;
+    padding: 15px 30px 60px 30px;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+h1 {
+    font-size: 37px;
+    line-height: 40px;
+    margin: 0 0 18px 0;
+}
+h2 {
+    color: #333;
+    font-size: 19px;
+    line-height: 21px;
+    margin: 0 0 7px 0;
+}
+h2 span {
+    font-style: italic;
+}
+h3 {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 3px 0 1px 0;
+}
+h4 {
+    color: #313131;
+    font-size: 11px;
+    line-height: 11px;
+    text-transform: uppercase;
+    margin: 20px 0 7px 0;
+}
+p {
+    font-size: 14px;
+    line-height: 19px;
+    margin: 0 0 16px 0;
+}
 
-    h1{
-        font-size: 36px;
-        line-height: 36px;
-        margin: 0 0 5px 0;
-    }
+a {
+    color: #965131;
+}
+ol {
+    list-style: decimal-leading-zero;
+    color: #000;
+    font-size: 13px;
+    padding-left: 28px;
+    margin: 0;
+}
+ol ul, ul ul, ol ol {
+    margin-bottom: 10px;
+}
+section {
+    width: 100%;
+    max-width: 560px;
+    margin-bottom: 30px;
+}
 
-    h1 + p {
-        margin: 0;
-    }
-
-    h2 {
-        color: #333;
-        margin-top: 100px;
-        margin-bottom: 1px;
-        font-size: 17px;
-        line-height: 19px;
-    }
-
-    p {
-        margin: 15px auto;
-    }
-
-    h2 + p {
-        margin-top: 5px;
-    }
-
-    a {
-        color: #3595b5;
-    }
-    strong {
-        font-size: 1.5em;
-        color: #CCC;
-    }
-
-    code > span.red {
-        color: #D14;
-    }
-
-    code > span.blue {
-        color: #099;
-    }
-
-    code > span.purple {
-        color: #C0C;
-    }
-
-    ol {
-        list-style: decimal-leading-zero;
-        padding: 0;
-    }
-
-    div.example {
-        width: 100%;
-        margin-top: 50px;
-    }
-
-    div.example:first-child{
-        /*margin-top: 0;*/
-    }
-
-    div.example:first-child h2 {
-        /*margin-top: 30px;*/
-    }
-
-    div.example > p {
-        max-width: 680px;
-        margin: 0 0 9px 0;
-    }
-
-    div.example > img, div.example > video, div.example > iframe {
-        display: block;
-        width: 100%;
-    }
-
-     div.example.small {
-        width: 60%;
-        margin: auto;
-     }
-
-    code, pre.code{
-        display: block;
-        max-width: 900px;
-        margin: 10px auto;
-        padding: 6px 10px;
-        border-radius: 3px;
-        text-align: left;
-        background-color: #f8f8f8;
-        border: 1px solid #ddd;
-        font-size: 13px;
-        line-height: 19px;
-        overflow: auto;
-        font-family: courier;
-        font-size: 12px;
-    }
-
-    .intro code, .intro pre.code{
-        margin-left: 0;
+    section.examples{
         max-width: 100%;
     }
 
-    section > p{
-        max-width: 900px;
-        font-family: Georgia;
+   @media all and (min-width: 768px) {
+        section{
+            margin-bottom: 60px;
+        }
     }
 
-    .message{
-        border-radius: 5px;
-        background-color: rgba(0,0,0,0.8);
-        color: #fff;
-        font-size: 11px;
-        padding: 5px 10px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -o-user-select: none;
-        user-select: none;
-        z-index: 11;
-    }
+.intro {
+    color: #000;
+    max-width: 670px;
+    margin-bottom: 30px;
+}
+.intro p {
+    font-size: 17px;
+    line-height: 21px;
+    margin-bottom: 0;
+}
 
-   .message > p{
-        display: inline-block;
-        margin: 0;
-    }
+.example{
+    margin: 0 0 33px 0;
+}
 
-    .message p .kicker{
-        font-weight: bold;
-        padding-right: 8px;
-        font-size: 10px;
-        text-transform: uppercase;
-    }
+.example > p {
+    max-width: 560px;
+    margin: 0 0 9px 0;
+}
+.example > img, .example > video, .example > iframe {
+    display: block;
+    width: 100%;
+}
+.example.small {
+    width: 60%;
+}
+code, .code {
+    display: block;
+    max-width: 600px;
+    margin: 20px 0;
+    padding: 6px 10px;
+    border-radius: 3px;
+    text-align: left;
+    background-color: #535353;
+    border: 1px solid #000000;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    font-family: courier;
+    font-size: 12px;
+    color: #fff;
+}
+li .code {
+    display: inline;
+    padding: 1px 3px;
+}
 
-    #status{
-        position: fixed;
-        width: 70%;
-        left: 15%;
-        top: 10px;
-        -webkit-transform: translateZ(0);
-    }
+.example code, .example .code{
+    max-width: 900px;
+}
 
-    #justloaded{
-        margin-left: 15px;
+.message {
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    color: #000;
+    font-size: 11px;
+    font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    z-index: 11;
+    border-top: 0px solid #000;
+    background-color: #CCCAC3;
+    padding: 0px 10px;
+    height: 0;
+    transition: all 0.4s ease;
+}
+.message.active {
+    border-top-width: 1px;
+    padding: 8px 10px;
+    height: auto;
+}
+.message > p {
+    font-size: 11px;
+    display: inline-block;
+    margin: 0;
+}
+.message p .kicker {
+    color: #000;
+    font-weight: normal;
+    padding-right: 8px;
+    text-transform: uppercase;
+}
+#justloaded {
+    visibility: hidden;
+    margin-left: 15px;
+}
+@media all and (min-width: 700px) {
+    #justloaded {
+        visibility: visible;
     }
+}
+@-webkit-keyframes pulse {
+    0% {
+        background-color: #45CEEF;
+    }
+    25% {
+        background-color: #FFF5A5;
+    }
+    50% {
+        background-color: #FFD4DA;
+    }
+    75% {
+        background-color: #99D2E4;
+    }
+    100% {
+        background-color: #D8CAB4;
+    }
+}
 
-    @-webkit-keyframes pulse {
-          0% {background-color: #45CEEF;}
-         25% {background-color: #FFF5A5;}
-         50% {background-color: #FFD4DA;}
-         75% {background-color: #99D2E4;}
-         100% {background-color: #D8CAB4;}
-    }
 
-
-    #forkongithub a {
-        background:#000;
-        color:#fff;
-        text-decoration:none;
-        font-family:arial, sans-serif;
-        text-align:center;
-        font-weight:bold;
-        padding:5px 40px;
-        font-size:1rem;
-        line-height:2rem;
-        position:relative;
-        transition:0.5s;
-    }
-    #forkongithub a:hover {
-        background:#060;
-        color:#fff;
-    }
-    #forkongithub a::before, #forkongithub a::after {
-        content:"";
-        width:100%;
+#forkongithub a {
+    background:#000;
+    color:#fff;
+    text-decoration:none;
+    font-family:arial, sans-serif;
+    text-align:center;
+    font-weight:bold;
+    padding:5px 40px;
+    font-size:1rem;
+    line-height:2rem;
+    position:relative;
+    transition:0.5s;
+}
+#forkongithub a:hover {
+    background:#060;
+    color:#fff;
+}
+#forkongithub a::before, #forkongithub a::after {
+    content:"";
+    width:100%;
+    display:block;
+    position:absolute;
+    top:1px;
+    left:0;
+    height:1px;
+    background:#fff;
+}
+#forkongithub a::after {
+    bottom:1px;
+    top:auto;
+}
+@media screen and (min-width:800px) {
+    #forkongithub {
+        position:fixed;
         display:block;
+        top:0;
+        right:0;
+        width:200px;
+        overflow:hidden;
+        height:200px;
+    }
+    #forkongithub a {
+        width:200px;
         position:absolute;
-        top:1px;
-        left:0;
-        height:1px;
-        background:#fff;
+        top:60px;
+        right:-60px;
+        transform:rotate(45deg);
+        -webkit-transform:rotate(45deg);
+        box-shadow:3px 4px 10px rgba(0, 0, 0, 0.8);
     }
-    #forkongithub a::after {
-        bottom:1px;
-        top:auto;
-    }
-    @media screen and (min-width:800px) {
-        #forkongithub {
-            position:absolute;
+}
+
+#releasehistory h4{
+    margin: 0 0 3px 0;
+}
+
+#releasehistory ul{
+    margin: 0 0 11px 0;
+    padding: 0px;
+}
+
+#releasehistory li{
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 0 3px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+</style>
+
+<body>
+    <div id="status" class="message">
+        <p>
+            <span class="kicker">Elements loaded</span>
+            <span id="total"></span>
+        </p>
+        <p id="justloaded"></p>
+    </div>
+
+    <section class="intro">
+        <h1>LaziestLoader</h1>
+        <p>Speed up your responsive and retina-aware website with LaziestLoader, a jQuery plugin that loads, from an array of sources, the most appropriate image at the last possible moment, and updates the image after a resize if needed. Custom callbacks and configuration provide even more functionality, like loading non-image elements and generic scroll-based triggers.</p>
+    </section>
+
+    <section class="installation">
+        <h2>Download v0.4.0</h2>
+        <ol>
+            <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.4.0/jquery.laziestloader.js">Development Version</a></li>
+            <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.4.0/jquery.laziestloader-min.js">Production Version</a></li> 
+            <li><span class="code">$ npm install laziestloader</span></li>
+            <li><span class="code">$ bower install laziestloader</span></li>
+        </ol>
+
+    </section>
+
+    <section class="prep">
+        <h2>Image Prep</h2>
+
+        <p>Your web-ready files need to be structured so that the name or path includes the <em>width</em> or a <em>slug</em> that represents the width.</p>
+
+        <h4>Examples</h4>
+        <ol>
+            <li>
+                <ul>
+                    <li>/images/pony-1300.jpg</li>
+                    <li>/images/pony-900.jpg</li>
+                    <li>/images/pony-640.jpg</li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>/images/pony/1300.jpg</li>
+                    <li>/images/pony/900.jpg</li>
+                    <li>/images/pony/640.jpg</li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>/images/1300/PONY-1300.jpg</li>
+                    <li>/images/900/PONY-900.jpg</li>
+                    <li>/images/640/PONY-640.jpg</li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>/images/pony-large.jpg</li>
+                    <li>/images/pony-medium.jpg</li>
+                    <li>/images/pony-small.jpg</li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>/images/pony/large.jpg</li>
+                    <li>/images/pony/medium.jpg</li>
+                    <li>/images/pony/small.jpg</li>
+                </ul>
+            </li>
+        </ol>
+
+
+
+        <h4>Retina</h4>
+        <p>Retina images are also supported with either pattern. You can use whatever naming convention you like to specify the retina source.</p>
+        <ol>
+            <li>
+                <ul>
+                    <li>/images/pony-1300@2x.jpg</li>
+                    <li>/images/pony-900@2x.jpg</li>
+                    <li>/images/pony-640@2x.jpg</li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>/images/retina-large/pony.jpg</li>
+                    <li>/images/retina-medium/pony.jpg</li>
+                    <li>/images/retina-small/pony.jpg</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <section class="prep">
+        <h2>HTML/CSS Prep</h2>
+        <p>Your image element should include a default image. A 1px transparent png or gif will work fine. You may also want to add a class to simplify your jQuery selector in a moment.</p>
+        <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot;&gt;</code>
+
+        <p>LaziestLoader works by finding the best-sized source image to match the target image element's current width. Since "img" elements are inline elements, they'll only have as much width at the current image, which will most likely be very small, like a 1px transparent gif. To ensure the plugin works correctly, you need to make sure the "img" element reports the width you want it to be. One way is to force it to fill its container element with CSS.</p>
+         <code>
+         img.lazy{
             display:block;
-            top:0;
-            right:0;
-            width:200px;
-            overflow:hidden;
-            height:200px;
-        }
-        #forkongithub a {
-            width:200px;
-            position:absolute;
-            top:60px;
-            right:-60px;
-            transform:rotate(45deg);
-            -webkit-transform:rotate(45deg);
-            box-shadow:3px 4px 10px rgba(0, 0, 0, 0.8);
-        }
-    }
-
- </style>
+            width: 100%;
+         }
+         </code>
+    </section>
 
 
-    <body>
-        <div id="status" class="message">
-            <p><span class="kicker">Elements loaded</span> <span id="total"></span></p>
-            <p id="justloaded"></p>
+    <section class="examples">
+        <h2>Example Usage</h2>
+
+        <div class="example">
+            <h3>Non-responsive</h3>
+            <p>The most basic method simply sets the src attribute as the element enters the viewport.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
+            <pre class="code">
+// html
+&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;
+
+// js
+$('.lazy').laziestloader();
+            </pre>
         </div>
-        <h1>LaziestLoader, be lazy my friend</h1>
-        <p>LaziestLoader is a responive-aware lazy loader, mostly for images... but it'll do lots of other things, too.</p>
-        <section>
-            <div class="example intro">
-                <h2>Instantiate Plugin</h2>
-                <p>Call the plugin on a jQuery selection. Optionally, specify a 'threshold' in the options object, which triggers a load x number of pixels before the item scrolls into the viewport.</p>
-                <code>$('.lazy').laziestloader({threshold:300});</code>
-            </div>
-            <div class="example">
-                <h2>Non-responsive</h2>
-                <p>The most basic method simply sets the src attribute as the element enters the viewport.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;</code>
-            </div>
 
-            <div class="example">
-                <h2>Non-responsive w/ Retina</h2>
-                <p>Specify a standard and an optional retina image.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;</code>
-            </div>
+        <div class="example">
+            <h3>Non-responsive w/ Retina</h3>
+            <p>Specify a standard and an optional retina image.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
+            <pre class="code">
+// html
+&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;
 
-            <div class="example small">
-                <h2>Non-responsive w/ Retina, smaller element</h2>
-                <p>Basic example always loads the same image, regardess of element width.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;</code>
-            </div>
+// js
+$('.lazy').laziestloader();
+            </pre>
+        </div>
 
-            <div class="example">
-                <h2>Responsive</h2>
-                <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
-            </div>
+        <div class="example small">
+            <h3>Non-responsive w/ Retina, smaller element</h3>
+            <p>Basic example always loads the same image, regardess of element width.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png">
+            <pre class="code">
+// html
+&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;
+ 
+// js
+$('.lazy').laziestloader();            
+            </pre>
+        </div>
 
-            <div class="example small">
-                <h2>Responsive, smaller element</h2>
-                <p>Load a smaller image, if possible.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;mg/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;</code>
-            </div>
+        <div class="example">
+            <h3>Responsive</h3>
+            <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
+            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+            
+            <pre class="code">
+// html
+&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
 
-            <div class="example">
-                <h2>Responsive w/ Slugs</h2>
-                <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
-                <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
-                <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;</code>
-            </div>
+// js
+$('.lazy').laziestloader();
+            </pre>
+        </div>
 
-            <div class="example">
-                <h2>Callback</h2>
-                <p>Pass in a callback to excute custom code after the src attribute has been changed. That's how the fancy black bar above works.</p>
-                <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/5a5a5a/fff.png">
-                <pre class="code">
+        <div class="example small">
+            <h3>Responsive, smaller element</h3>
+            <p>Load a smaller image, if possible.</p>
+            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+            <pre class="code">
+
+// html
+&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
+
+// js
+$('.lazy').laziestloader();
+            </pre>
+        </div>
+
+        <div class="example">
+            <h3>Responsive w/ Slugs</h3>
+            <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
+            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
+            
+            <pre class="code">
+
+// html
+&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;
+
+// js
+$('.lazy').laziestloader();
+            </pre>
+        </div>
+
+        <div class="example">
+            <h3>Callback</h3>
+            <p>Pass in a callback to excute custom code after the src attribute has been changed. That's how the fancy black bar above works.</p>
+            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/5a5a5a/fff.png">
+            <pre class="code">
 //html
 &lt;img class=&quot;callback&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/5a5a5a/fff.png&quot;&gt;
 
@@ -297,13 +474,13 @@ $(&quot;img.callback&quot;).laziestloader({ threshold: 100}, function() {
     $(&quot;#total&quot;).html(totalLoaded);
 });
                 </pre>
-            </div>
+        </div>
 
-            <div class="example">
-                <h2>Custom Source Function</h2>
-                <p>Need fancier logic to determine the source path? You can write your own.</p>
-                <img class="custom" src="img/transparent.gif">
-                <pre class="code">
+        <div class="example">
+            <h3>Custom Source Function</h3>
+            <p>Need fancier logic to determine the source path? You can write your own.</p>
+            <img class="custom" src="img/transparent.gif">
+            <pre class="code">
 //html
 &lt;img class=&quot;custom&quot; src=&quot;img/transparent.gif&quot;&gt;
 
@@ -317,13 +494,13 @@ $(&quot;img.custom&quot;).laziestloader({
     }
 });
                 </pre>
-            </div>
+        </div>
 
-            <div class="example">
-                <h2>Best Fit</h2>
-                <p>The best-fit method used internally can also be used in your callbacks and custom source functions. Pass in a target width and an array of possible values to find the best value.</p>
-                <img class="bestfit" src="img/transparent.gif">
-                <pre class="code">
+        <div class="example">
+            <h3>Best Fit</h3>
+            <p>The best-fit method used internally can also be used in your callbacks and custom source functions. Pass in a target width and an array of possible values to find the best value.</p>
+            <img class="bestfit" src="img/transparent.gif">
+            <pre class="code">
 //html
 &lt;img class=&quot;bestfit&quot; src=&quot;img/transparent.gif&quot;&gt;
 
@@ -337,35 +514,44 @@ $(&quot;img.bestfit&quot;).laziestloader({
     }
 });
                 </pre>
-            </div>
+        </div>
 
-            <div class="example">
-                <h2>Video</h2>
-                <p>Images aren't the only things with 'src' attributes. Try a video.</p>
-                <video class="lazy" autoplay loop data-pattern="http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4" data-widths="[640, 900]"></video>
-                <pre class="code">&lt;video class=&quot;lazy&quot; autoplay loop data-pattern=&quot;http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4&quot; data-widths=&quot;[640, 900]&quot;&gt;&lt;/video&gt;</pre>
-            </div>
+        <div class="example">
+            <h3>Video</h3>
+            <p>Images aren't the only things with 'src' attributes. Try a video.</p>
+            <video class="lazy" autoplay loop data-pattern="http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4" data-widths="[640, 900]"></video>
+            <pre class="code">
 
-            <div class="example">
-                <h2>Set Element Height Programmatically</h2>
-                <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule. <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em></p>
-                <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
-                <pre class="code">
+// html
+&lt;video class=&quot;lazy&quot; autoplay loop data-pattern=&quot;http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4&quot; data-widths=&quot;[640, 900]&quot;&gt;&lt;/video&gt;
+
+// js
+$('.lazy').laziestloader();
+            </pre>
+        </div>
+
+        <div class="example">
+            <h3>Set Element Height Programmatically</h3>
+            <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule.
+                <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em>
+            </p>
+            <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
+            <pre class="code">
 // html
 &lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/fNlxKH9Jtmc&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
 // js
 $('.iframe').laziestloader({threshold:300});
                 </pre>
-            </div>
+        </div>
 
 
 
-            <div class="example">
-                <h2>Completely Custom Behavior /w Callback</h2>
-                <p>Need more control than custom source path generation? For example, you might want to completely rewrite the contents of your element. You can have your callback do all the work, sidestepping much of LaziestLoader's functionality.</p>
-                <div class="override"></div>
-                <pre class="code">
+        <div class="example">
+            <h3>Completely Custom Behavior /w Callback</h3>
+            <p>Need more control than custom source path generation? For example, you might want to completely rewrite the contents of your element. You can have your callback do all the work, sidestepping much of LaziestLoader's functionality.</p>
+            <div class="override"></div>
+            <pre class="code">
 // html
 &lt;div class=&quot;override&quot;&gt;&lt;/div&gt;
 
@@ -378,63 +564,206 @@ $('div.override').laziestloader({
     $(this).html('&lt;p style=&quot;text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;&quot;&gt;Boom!&lt;/p&gt;')
 });
                 </pre>
-            </div>
-        </section>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="jquery.laziestloader.js"></script>
+        </div>
+    </section>
 
-        <script>
-        $(function() {
-            var totalLoaded = 0;
+    <section>
+        <h2>Options</h2>
+        <p>In addition to the "Custom Source Function" using `getSource` example above, there are other optional behaviors that can be configured in the options object.</p>
 
-            var cb = function () {
-                totalLoaded += 1;
-                var src = ( $(this).attr('src') ) ? $(this).attr('src') : 'Custom content';
-                $('#justloaded').show().html('<span class="kicker">Loading</span>'+src).stop(true, true).delay(700).fadeOut(1500);
-                $('#total').html(totalLoaded);
-            };
+        <h3>threshold</h3>
+        <p>By default, images are only loaded when the user scrolls to them and they became visible on the screen.</p>
+        <p>If you want your images to load earlier than that, lets say 200px before they appear on the screen, specify the threshold in the options object.</p>
+        
+       <code>
+        $("img").laziestloader({threshold: 200});
+       </code>
 
-            // standard methods
-            $('.lazy').laziestloader({threshold:300}, cb);
+        <h3>scrollThrottle</h3>
+        <p>To increase performance, the position of lazy loading elements are only checked every 250ms while scrolling. If you need to perform the check more often, lower the number. If scroll performance is an issue -- likely if there are lots of elements -- increase the number.</p>
+        <code>
+        $("img").laziestloader({scrollThrottle: 300});
+        </code>
 
-            // iframe
-            $('.iframe').laziestloader({
-                threshold:300,
-                setHeight: true
-            },cb);
+        <h3>sizeOffsetPercent</h3>
+        <p>The crop selection logic works by picking the image that is greater than or equal to the size of the current element. If you prefer to scale smaller images into larger elements, set this between 0 and 100, where the value is the percent width of the containing element you want to subtract from the math logic. The bigger the number, the smaller the image that'll be selected.
+        </p>        
+        <code>
+        $("img").laziestloader({sizeOffsetPercent: 10});
+        </code>
 
-            // custom methods
-            $('img.custom').laziestloader({
-                threshold: 100,
-                getSource: function($el) {
-                    var width = $el.width();
-                    var height = Math.round(width * 0.5625);
-                    return 'http://placekitten.com/'+width+'/'+height;
-                }
-            }, cb);
+        <h3>sizePattern</h3>
+        <p>The regular expression used to search your string, to be replaced by the width number or slug. The default is `/{{SIZE}}/ig`, which finds the string `size`, regardless of case, inside of '{' style double brackets. Example: `/path/name-{{size}}.jpg`. Changing this option is useful if, for example, you have Mustache-style templates rendered on the server that would also match the default laziestloader.js pattern and be rendered blank before our client code runs. Many characters have special meaning and can't be used. A nice alternal pattern is:</p>
+        <code>
+        $("img").laziestloader({sizePattern: /%size%/ig});
+        </code>
 
-            // override
-            $('div.override').laziestloader({
-                threshold: 100,
-                setSourceMode: false
-            }, function(){
-                cb.call(this);
-                var height = Math.round($(this).width() * 0.5625);
-                $(this).html('<p style="text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;">Boom!</p>')
-            });
+        <h3>setSourceMode</h3>
+        <p>In most cases, the plugin needs to set the source attribute of the element. If you want to use the plugin in ways that don't involve simply setting a source attribute, set `setSourceMode` to false and use the callback to completely manage the behavior of the element on trigger.</p>
 
-            $('img.bestfit').laziestloader({
-                threshold: 100,
-                getSource: function($el) {
-                    var width = $().laziestloader.bestFit($el.width(), [200, 700, 900, 1200]);
-                    var height = Math.round(width * 0.5625);
-                    return 'http://placekitten.com/'+width+'/'+height;
-                }
-            }, cb);
+        <pre class="code">
+&lt;div&gt;&lt;p&gt;Replace me&lt;/p&gt;&lt;/div&gt;
+
+$('div').laziestloader({
+    setSourceMode: false
+}, function(){
+    $(this).html('&lt;div&gt;&lt;p&gt;New content&lt;/p&gt;&lt;/div&gt;')
+});
+        </pre>
+    </section>
+
+    <section>
+        <h2>Trigger</h2>
+        <p>You can trigger element loading without scrolling the element into view.</p>
+        <code>
+        $("img.lazy").trigger("laziestloader");
+        </code>
+    </section>
+
+    <section id="releasehistory">
+        <h2>Release History</h2>
+        <h4>0.4.0</h4>
+        <ul>
+            <li>Added minified version and npm build task to generate it.</li>
+            <li>Moved all documentation from README.md to redesigned project page.</li>
+        </ul>
+
+        <h4>0.3.0</h4>
+        <ul>
+            <li>Exposed `bestFit` method so it can be used in callbacks.  See <a href="https://github.com/sjwilliams/laziestloader/issues/4">Issue 4</a>).</li>
+        </ul>
+
+        <h4>0.2.0</h4>
+        <ul>
+            <li>Added a scrollThrottle option, and set a reasonable default. See <a href="https://github.com/sjwilliams/laziestloader/issues/5">Issue 5</a>).</li>
+            <li>Changed data-height-multiplier to data-ratio, and deprecated original. See <a href="https://github.com/sjwilliams/laziestloader/issues/6">Issue 6</a>)</li>
+        </ul>
+
+        <h4>0.1.2</h4>
+        <ul>
+            <li>Fixed <a href="https://github.com/sjwilliams/laziestloader/issues/1">Issue 1</a>), bug with non-sorted input.</li>
+        </ul>
+
+        <h4>0.1.1</h4>
+        <ul>
+            <li>Added `sizePattern` option.</li>
+        </ul>
+
+        <h4>0.1.0</h4>
+        <ul>
+            <li>Added `sizeOffsetPercent` option.</li>
+        </ul>
+
+        <h4>0.0.2</h4>
+        <ul>
+            <li>AMD module</li>
+            <li>Enforce style with .editorconfig, .jshintrc and .jsbeautifyrc</li>
+        </ul>
+
+        <h4>0.0.1</h4>
+        <ul>
+            <li>Initial release.</li>
+        </ul>
+
+    </section>
+
+
+    <section>
+        <h2>Credits</h2>
+        <p>LaziestLoader is by <a href="http://joshwilliams.com">Josh Williams</a>. Early versions were based heavily on Luís Almeida's <a href="http://luis-almeida.github.com/unveil/">unveil</a></p>
+    </section>
+
+    <section>
+        <h2>License</h2>
+        <p>LaziestLoader is licensed under the <a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/master/LICENSE">MIT license</a></p>
+    </section>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')
+    </script>
+    <script src="jquery.laziestloader.js"></script>
+
+    <script>
+    $(function() {
+        var totalLoaded = 0;
+
+        var $w = $(window),
+            $status = $('#status'),
+            $examplesContainer = $('.examples');
+
+        var didScroll = false;
+
+        var cb = function() {
+            totalLoaded += 1;
+            var src = ($(this).attr('src')) ? $(this).attr('src') : 'Custom content';
+            $('#justloaded').show().html('<span class="kicker">Loading</span>' + src).stop(true, true).delay(700).fadeOut(1500);
+            $('#total').html(totalLoaded);
+        };
+
+        var showStatus = function() {
+            if ($w.scrollTop() > $examplesContainer.offset().top) {
+                $status.addClass('active');
+            } else {
+                $status.removeClass('active');
+            }
+        };
+
+        $w.scroll(function() {
+            didScroll = true;
         });
-        </script>
 
-        <div id="forkongithub"><a href="https://github.com/sjwilliams/laziestloader">Fork me on GitHub</a></div>
-    </body>
+        setInterval(function() {
+            if (didScroll) {
+                didScroll = false;
+                showStatus();
+            }
+        }, 100);
+
+        // standard methods
+        $('.lazy').laziestloader({
+            threshold: 300
+        }, cb);
+
+        // iframe
+        $('.iframe').laziestloader({
+            threshold: 300,
+            setHeight: true
+        }, cb);
+
+        // custom methods
+        $('img.custom').laziestloader({
+            threshold: 100,
+            getSource: function($el) {
+                var width = $el.width();
+                var height = Math.round(width * 0.5625);
+                return 'http://placekitten.com/' + width + '/' + height;
+            }
+        }, cb);
+
+        // override
+        $('div.override').laziestloader({
+            threshold: 100,
+            setSourceMode: false
+        }, function() {
+            cb.call(this);
+            var height = Math.round($(this).width() * 0.5625);
+            $(this).html('<p style="text-align:center; height: ' + height + 'px; line-height:' + height + 'px;-webkit-animation: pulse 10s infinite alternate;">Boom!</p>')
+        });
+
+        $('img.bestfit').laziestloader({
+            threshold: 100,
+            getSource: function($el) {
+                var width = $().laziestloader.bestFit($el.width(), [200, 700, 900, 1200]);
+                var height = Math.round(width * 0.5625);
+                return 'http://placekitten.com/' + width + '/' + height;
+            }
+        }, cb);
+    });
+    </script>
+
+    <div id="forkongithub"><a href="https://github.com/sjwilliams/laziestloader">Fork me on GitHub</a>
+    </div>
+</body>
+
 </html>

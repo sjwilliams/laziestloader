@@ -70,7 +70,7 @@
         // width or slug version?
         if (typeof data.widths[0] === 'object') {
           slug = (function() {
-            var widths = $.map(data.widths, function(val, i) {
+            var widths = $.map(data.widths, function(val) {
               return val.size;
             });
 

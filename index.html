@@ -248,6 +248,24 @@ li .code {
         box-shadow:3px 4px 10px rgba(0, 0, 0, 0.8);
     }
 }
+
+#releasehistory h4{
+    margin: 0 0 3px 0;
+}
+
+#releasehistory ul{
+    margin: 0 0 11px 0;
+    padding: 0px;
+}
+
+#releasehistory li{
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 0 3px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
 </style>
 
 <body>
@@ -555,7 +573,7 @@ $('div.override').laziestloader({
         </div>
     </section>
 
-    <section class="options">
+    <section>
         <h2>Options</h2>
         <p>In addition to the "Custom Source Function" using `getSource` example above, there are other optional behaviors that can be configured in the options object.</p>
 
@@ -600,12 +618,70 @@ $('div').laziestloader({
         </pre>
     </section>
 
-    <section class="trigger">
+    <section>
         <h2>Trigger</h2>
         <p>You can trigger element loading without scrolling the element into view.</p>
         <code>
         $("img.lazy").trigger("laziestloader");
         </code>
+    </section>
+
+    <section id="releasehistory">
+        <h2>Release History</h2>
+        <h4>0.4.0</h4>
+        <ul>
+            <li>Added minified version and npm build task to generate it.</li>
+            <li>Moved all documentation from README.md to redesigned project page.</li>
+        </ul>
+
+        <h4>0.3.0</h4>
+        <ul>
+            <li>Exposed `bestFit` method so it can be used in callbacks.  See <a href="https://github.com/sjwilliams/laziestloader/issues/4">Issue 4</a>).</li>
+        </ul>
+
+        <h4>0.2.0</h4>
+        <ul>
+            <li>Added a scrollThrottle option, and set a reasonable default. See <a href="https://github.com/sjwilliams/laziestloader/issues/5">Issue 5</a>).</li>
+            <li>Changed data-height-multiplier to data-ratio, and deprecated original. See <a href="https://github.com/sjwilliams/laziestloader/issues/6">Issue 6</a>)</li>
+        </ul>
+
+        <h4>0.1.2</h4>
+        <ul>
+            <li>Fixed <a href="https://github.com/sjwilliams/laziestloader/issues/1">Issue 1</a>), bug with non-sorted input.</li>
+        </ul>
+
+        <h4>0.1.1</h4>
+        <ul>
+            <li>Added `sizePattern` option.</li>
+        </ul>
+
+        <h4>0.1.0</h4>
+        <ul>
+            <li>Added `sizeOffsetPercent` option.</li>
+        </ul>
+
+        <h4>0.0.2</h4>
+        <ul>
+            <li>AMD module</li>
+            <li>Enforce style with .editorconfig, .jshintrc and .jsbeautifyrc</li>
+        </ul>
+
+        <h4>0.0.1</h4>
+        <ul>
+            <li>Initial release.</li>
+        </ul>
+
+    </section>
+
+
+    <section>
+        <h2>Credits</h2>
+        <p>This project is based heavily on Luís Almeida's <a href="http://luis-almeida.github.com/unveil/">unveil</a></p>
+    </section>
+
+    <section>
+        <h2>License</h2>
+        <p>LaziestLoader is licensed under the <a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/master/LICENSE">MIT license</a></p>
     </section>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

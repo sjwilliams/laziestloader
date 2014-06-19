@@ -105,16 +105,17 @@
 
     function bindLoader() {
       $elements.one('laziestloader', function() {
+        var $el = $(this);
         var source;
 
         // set height?
-        if ($(this).data().ratio) {
+        if ($el.data().ratio) {
           setHeight.call(this);
         }
 
         // set content. default: set element source
         if (options.setSourceMode) {
-          source = options.getSource($(this));
+          source = options.getSource($el);
           if (source && this.getAttribute('src') !== source) {
             this.setAttribute('src', source);
             if (typeof callback === 'function') callback.call(this);
@@ -124,7 +125,7 @@
         }
 
         // reflect current state in classes
-        $(this).addClass('ll-loaded').removeClass('ll-notloaded');
+        $el.addClass('ll-loaded').removeClass('ll-notloaded');
       });
     }
 

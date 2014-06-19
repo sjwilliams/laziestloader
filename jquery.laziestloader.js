@@ -122,6 +122,9 @@
         } else {
           if (typeof callback === 'function') callback.call(this);
         }
+
+        // reflect current state in classes
+        $(this).addClass('ll-loaded').removeClass('ll-notloaded');
       });
     }
 
@@ -199,8 +202,9 @@
       }
     }
 
-    // set element dimensions?
-    $elements.each(setHeight);
+    // add inital state classes, ahd check if 
+    // element dimensions need to be set.
+    $elements.addClass('ll-init ll-notloaded').each(setHeight);
 
     bindLoader();
 

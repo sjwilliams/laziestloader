@@ -136,8 +136,7 @@
         }
         
         // Determine when to fire `loaded` event. Wait until 
-        // until media is truly loaded if possible, otherwise
-        // immediately
+        // media is truly loaded if possible, otherwise immediately
         if (options.setSourceMode && this.nodeName === "IMG") {
           this.onload = function() {
             onLoad($el);

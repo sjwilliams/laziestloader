@@ -97,6 +97,17 @@
     }
 
     /**
+     * Reflect loaded state in class names
+     * and fire event.
+     * 
+     * @param  {jQuery Object} $el
+     */
+    function onLoad($el) {
+      $el.addClass('ll-loaded').removeClass('ll-notloaded');
+      $el.trigger('loaded');
+    }
+
+    /**
      * Attach event handler that sets correct
      * media source for the elements' width, or
      * allows callback to manipulate element
@@ -123,9 +134,17 @@
         } else {
           if (typeof callback === 'function') callback.call(this);
         }
-
-        // reflect current state in classes
-        $el.addClass('ll-loaded').removeClass('ll-notloaded');
+        
+        // Determine when to fire `loaded` event. Wait until 
+        // until media is truly loaded if possible, otherwise
+        // immediately
+        if (options.setSourceMode && this.nodeName === "IMG") {
+          this.onload = function() {
+            onLoad($el);
+          }
+        } else {
+          onLoad($el);
+        }
       });
     }
 

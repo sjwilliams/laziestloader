@@ -105,6 +105,10 @@
     function onLoad($el) {
       $el.addClass('ll-loaded').removeClass('ll-notloaded');
       $el.trigger('loaded');
+
+      if (typeof callback === 'function') {
+         callback.call($el);
+      }
     }
 
     /**
@@ -129,12 +133,9 @@
           source = options.getSource($el);
           if (source && this.getAttribute('src') !== source) {
             this.setAttribute('src', source);
-            if (typeof callback === 'function') callback.call(this);
           }
-        } else {
-          if (typeof callback === 'function') callback.call(this);
         }
-        
+
         // Determine when to fire `loaded` event. Wait until 
         // media is truly loaded if possible, otherwise immediately
         if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {

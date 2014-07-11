@@ -1,5 +1,5 @@
 /** 
- * @preserve LaziestLoader - v0.5.0 - 2014-06-19
+ * @preserve LaziestLoader - v0.5.1 - 2014-06-19
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
  * Copyright (c) 2014 Josh Williams; Licensed MIT
@@ -97,6 +97,21 @@
     }
 
     /**
+     * Reflect loaded state in class names
+     * and fire event.
+     * 
+     * @param  {jQuery Object} $el
+     */
+    function onLoad($el) {
+      $el.addClass('ll-loaded').removeClass('ll-notloaded');
+      $el.trigger('loaded');
+
+      if (typeof callback === 'function') {
+         callback.call($el);
+      }
+    }
+
+    /**
      * Attach event handler that sets correct
      * media source for the elements' width, or
      * allows callback to manipulate element
@@ -118,14 +133,24 @@
           source = options.getSource($el);
           if (source && this.getAttribute('src') !== source) {
             this.setAttribute('src', source);
-            if (typeof callback === 'function') callback.call(this);
           }
-        } else {
-          if (typeof callback === 'function') callback.call(this);
         }
 
-        // reflect current state in classes
-        $el.addClass('ll-loaded').removeClass('ll-notloaded');
+        // Determine when to fire `loaded` event. Wait until 
+        // media is truly loaded if possible, otherwise immediately
+        if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
+          if (this.nodeName === 'IMG') {
+            this.onload = function() {
+              onLoad($el);
+            }
+          } else {
+            this.onloadstart = function() {
+              onLoad($el);
+            }
+          }
+        } else {
+          onLoad($el);
+        }
       });
     }
 
@@ -203,7 +228,7 @@
       }
     }
 
-    // add inital state classes, ahd check if 
+    // add inital state classes, and check if 
     // element dimensions need to be set.
     $elements.addClass('ll-init ll-notloaded').each(setHeight);
 

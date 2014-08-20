@@ -1,4 +1,4 @@
-/** 
+/**
  * @preserve LaziestLoader - v0.5.1 - 2014-06-19
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
@@ -99,7 +99,7 @@
     /**
      * Reflect loaded state in class names
      * and fire event.
-     * 
+     *
      * @param  {jQuery Object} $el
      */
     function onLoad($el) {
@@ -107,7 +107,7 @@
       $el.trigger('loaded');
 
       if (typeof callback === 'function') {
-         callback.call($el);
+        callback.call($el);
       }
     }
 
@@ -136,17 +136,17 @@
           }
         }
 
-        // Determine when to fire `loaded` event. Wait until 
+        // Determine when to fire `loaded` event. Wait until
         // media is truly loaded if possible, otherwise immediately
         if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
           if (this.nodeName === 'IMG') {
             this.onload = function() {
               onLoad($el);
-            }
+            };
           } else {
             this.onloadstart = function() {
               onLoad($el);
-            }
+            };
           }
         } else {
           onLoad($el);
@@ -228,7 +228,7 @@
       }
     }
 
-    // add inital state classes, and check if 
+    // add inital state classes, and check if
     // element dimensions need to be set.
     $elements.addClass('ll-init ll-notloaded').each(setHeight);
 

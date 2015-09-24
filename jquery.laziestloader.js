@@ -1,5 +1,5 @@
 /**
- * @preserve LaziestLoader - v0.5.1 - 2014-06-19
+ * @preserve LaziestLoader - v0.5.2 - 2015-09-24
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
  * Copyright (c) 2014 Josh Williams; Licensed MIT
@@ -46,15 +46,15 @@
      * will be replaced by an integer from a list of available sizes.
      * Eg:
      *
-     * <img data-pattern="path/toyourimage-{{size}}.jpg" data-size="[320, 640, 970]">
-     * <img data-pattern="path/toyourimage-{{size}}.jpg" data-pattern-retina="path/toyourimage-{{size}}@2x.jpg" data-size="[320, 640, 970]">
-     * <img data-pattern="path/toyourimage/{{size}}/slug.jpg" data-pattern-retina="path/toyourimage/{{size}}/slug@2x.jpg" data-size="[320, 640, 970]">
+     * <img data-pattern="path/toyourimage-{{size}}.jpg" data-widths="[320, 640, 970]">
+     * <img data-pattern="path/toyourimage-{{size}}.jpg" data-pattern-retina="path/toyourimage-{{size}}@2x.jpg" data-widths="[320, 640, 970]">
+     * <img data-pattern="path/toyourimage/{{size}}/slug.jpg" data-pattern-retina="path/toyourimage/{{size}}/slug@2x.jpg" data-widths="[320, 640, 970]">
      *
      * Range of sizes, with slugs: specify a string path with a {{size}} that
      * will be replaced by a slug representing an image size.
      * Eg:
      *
-     * <img data-pattern="path/toyourimage-{{size}}.jpg" data-size="[{width: 320, slug: 'small'},{width:900, slug: 'large'}]">
+     * <img data-pattern="path/toyourimage-{{size}}.jpg" data-widths="[{width: 320, slug: 'small'},{width:900, slug: 'large'}]">
      *
      * @param  {jQuery object} $el
      * @return {String}

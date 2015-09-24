@@ -286,7 +286,7 @@ li .code {
         <h2>Download v0.5.1</h2>
         <ol>
             <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.5.1/jquery.laziestloader.js">Development Version</a></li>
-            <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.5.1/jquery.laziestloader.min.js">Production Version</a></li> 
+            <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.5.1/jquery.laziestloader.min.js">Production Version</a></li>
             <li><span class="code">$ npm install laziestloader</span></li>
             <li><span class="code">$ bower install laziestloader</span></li>
         </ol>
@@ -410,9 +410,9 @@ $('.lazy').laziestloader();
             <pre class="code">
 // html
 &lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;
- 
+
 // js
-$('.lazy').laziestloader();            
+$('.lazy').laziestloader();
             </pre>
         </div>
 
@@ -420,7 +420,7 @@ $('.lazy').laziestloader();
             <h3>Responsive</h3>
             <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
             <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
-            
+
             <pre class="code">
 // html
 &lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
@@ -448,7 +448,7 @@ $('.lazy').laziestloader();
             <h3>Responsive w/ Slugs</h3>
             <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
             <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
-            
+
             <pre class="code">
 
 // html
@@ -574,7 +574,7 @@ $('div.override').laziestloader({
         <h3>threshold</h3>
         <p>By default, images are only loaded when the user scrolls to them and they became visible on the screen.</p>
         <p>If you want your images to load earlier than that, lets say 200px before they appear on the screen, specify the threshold in the options object.</p>
-        
+
        <code>
         $("img").laziestloader({threshold: 200});
        </code>
@@ -587,7 +587,7 @@ $('div.override').laziestloader({
 
         <h3>sizeOffsetPercent</h3>
         <p>The crop selection logic works by picking the image that is greater than or equal to the size of the current element. If you prefer to scale smaller images into larger elements, set this between 0 and 100, where the value is the percent width of the containing element you want to subtract from the math logic. The bigger the number, the smaller the image that'll be selected.
-        </p>        
+        </p>
         <code>
         $("img").laziestloader({sizeOffsetPercent: 10});
         </code>
@@ -622,6 +622,16 @@ $('div').laziestloader({
 
     <section id="releasehistory">
         <h2>Release History</h2>
+        <h4>0.5.3</h4>
+        <ul>
+            <li>Adding horizontal checks for sideways scrolling and such.</li>
+        </ul>
+
+        <h4>0.5.2</h4>
+        <ul>
+            <li>Tiny comment fix.</li>
+        </ul>
+
         <h4>0.5.1</h4>
         <ul>
             <li>Loaded state fired, if possible, when media actually loads, not simply triggered by viewport position. See <a href="https://github.com/sjwilliams/laziestloader/issues/8">Issue 8</a>.</li>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Horizontal LaziestLoader example</title>
+
+    <style>
+
+        body{
+          margin: 10px;
+          padding: 0;
+        }
+
+        ul{
+          display: block;
+          width: calc(500vw + 10px);
+          margin: 0;
+          padding: 0;
+        }
+
+        ul:after{
+          visibility: hidden;
+          display: block;
+          font-size: 0;
+          content: " ";
+          clear: both;
+          height: 0;
+        }
+
+        li{
+
+          float: left;
+          width: 100vw;
+        }
+
+        .lazy{
+          width: 100%;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <ul class="images">
+        <li class="image">
+            <img class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="../img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+        </li>
+        <li class="image">
+            <img class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="../img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+        </li>
+        <li class="image">
+            <img class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="../img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+        </li>
+        <li class="image">
+            <img class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="../img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+        </li>
+        <li class="image">
+            <img class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="../img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+        </li>
+    </ul>
+
+
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script src="../jquery.laziestloader.js"></script>
+    <script>
+      $('.lazy').laziestloader();
+    </script>
+
+</body>
+</html>

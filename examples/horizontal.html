@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Horizontal LaziestLoader example</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+    }
+
+    ul {
+        display: block;
+        width: 500vw;
+        margin: 0 0 5px 0;
+        padding: 0;
+    }
+
+    ul:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+
+    li {
+        float: left;
+        width: 100vw;
+        list-style-type: none;
+        display: block;
+    }
+
+    .ll-init {
+        width: 100%;
+        transition: opacity 0.3s ease-out;
+        opacity: 0;
+    }
+
+    .ll-loaded {
+        opacity: 1;
+    }
+
+    h2 {
+        position: fixed;
+        -webkit-transform: translateZ(0px);
+        -webkit-backface-visibility: hidden;
+        margin: 0;
+        z-index: 1;
+        top: 50vh;
+
+        font-family: Helvetica;
+        text-align: center;
+        width: 100%;
+        color: #fff;
+        text-shadow: #333 0px 0px 2px, #000 0px 0px 6px;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>Scroll ↓ →</h2>
+    <ul class="images">
+        <li>
+            <img id="one" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0001-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="two" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0002-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="three" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0003-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="four" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0004-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="five" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0005-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+    </ul>
+    <ul class="images">
+        <li>
+            <img id="six" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0006-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="seven" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0007-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="eight" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0008-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="nine" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/sunset-flipbook/photos/baybridge-flipbook-0009-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="ten" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6674-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+    </ul>
+
+    <ul class="images">
+        <li>
+            <img id="eleven" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6674-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="twelve" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6675-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="thirteen" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6676-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="fourteen " class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6677-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="fifteen" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6678-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+    </ul>
+
+
+    <ul class="images">
+        <li>
+            <img id="sixteen" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6679-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="seventeen" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6680-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="eighteen" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6681-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="nineteen" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6684-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+        <li>
+            <img id="twenty" class="lazy" src="../img/transparent.gif" data-ratio="0.666666667" data-pattern="https://joshwilliams.com/projects/flipbook-texas137/photos/flipbook-tx137-6685-{{size}}.jpg" data-widths="[320, 640, 900, 1280, 1600]">
+        </li>
+    </ul>
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script src="../jquery.laziestloader.js"></script>
+    <script>
+    $('.lazy').laziestloader({
+      threshold: 50
+    });
+
+    </script>
+</body>
+
+</html>

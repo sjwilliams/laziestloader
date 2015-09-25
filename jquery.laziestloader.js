@@ -196,18 +196,21 @@
      */
 
     function laziestloader() {
+      var docEl = document.documentElement;
+      var wHeight = window.innerHeight || docEl.clientHeight;
+      var wWidth = window.innerWidth || docEl.clientWidth;
+      var threshold = options.threshold;
+
       var $inview = $elements.not($loaded).filter(function() {
-        var $el = $(this),
-          threshold = options.threshold;
+        if ($(this).is(':hidden')) return;
+        var rect = $(this)[0].getBoundingClientRect();
 
-        if ($el.is(':hidden')) return;
-
-        var wt = $w.scrollTop(),
-          wb = wt + $w.height(),
-          et = $el.offset().top,
-          eb = et + $el.height();
-
-        return eb >= wt - threshold && et <= wb + threshold;
+        return (
+          rect.bottom + threshold > 0 &&
+          rect.right + threshold > 0 &&
+          rect.left < wWidth + threshold &&
+          rect.top < wHeight + threshold
+        );
       });
 
       $inview.trigger('laziestloader');

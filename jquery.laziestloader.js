@@ -1,5 +1,5 @@
 /**
- * @preserve LaziestLoader - v0.6.1 - 2015-09-24
+ * @preserve LaziestLoader - v0.6.2 - 2015-09-28
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
  * Copyright (c) 2015 Josh Williams; Licensed MIT
@@ -136,8 +136,12 @@
           }
         }
 
+        // applied immediately to reflect that media has started but,
+        // perhaps, hasn't finished downloading.
+        $el.addClass('ll-loadstarted');
+
         // Determine when to fire `loaded` event. Wait until
-        // media is truly loaded if possible, otherwise immediately
+        // media is truly loaded if possible, otherwise immediately.
         if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
           if (this.nodeName === 'IMG') {
             this.onload = function() {

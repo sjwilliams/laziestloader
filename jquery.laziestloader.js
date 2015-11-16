@@ -222,6 +222,10 @@
     }
 
 
+    /**
+     * Given a lazy element, check if it should have
+     * its height set based on a data-ratio multiplier.
+     */
     function setHeight() {
       var $el = $(this),
         data = $el.data();
@@ -262,6 +266,7 @@
       laziestloader();
     });
 
+    // initial check for lazy images
     $(document).ready(function() {
       laziestloader();
     });

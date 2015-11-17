@@ -32,7 +32,7 @@
     }, options);
 
 
-    var useNativeScroll = options.event.indexOf('scroll') === 0;
+    var useNativeScroll = options.event === 'string' && options.event.indexOf('scroll') === 0;
 
     /**
      * Generate source path of image to load. Take into account
@@ -268,9 +268,40 @@
       }, options.scrollThrottle);
 
     } else {
-      $w.on(options.event, function(){
-        laziestloader();
-      });
+
+      // if custom event is a function, it'll need
+      // to call laziestloader() manually, like so:
+      //
+      //   $('.g-lazy').laziestloader({
+      //    event: function(cb){
+      //      // custom scroll event on nytimes.com
+      //      PageManager.on('nyt:page-scroll', function(){
+      //       // do something interesting if you like
+      //       // and then call the passed in laziestloader();
+      //       cb();
+      //     });
+      //    }
+      //  });
+      //
+      //
+      // Otherwise, it's a string representing an event on the
+      // window to subscribe to, like so:
+      //
+      // // some code dispatching throttled events
+      // $window.trigger('nytg-scroll');
+      //
+      // $('.g-lazy').laziestloader({
+      //   event: 'nytg-scroll'
+      // });
+      //
+
+      if (typeof options.event === 'function') {
+        options.event(laziestloader);
+      } else {
+        $w.on(options.event, function(){
+          laziestloader();
+        });
+      }
     }
 
 

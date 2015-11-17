@@ -25,6 +25,7 @@
       threshold: 0,
       sizePattern: /{{SIZE}}/ig,
       getSource: getSource,
+      event: 'scroll',
       scrollThrottle: 250, // time in ms to throttle scroll. Increase for better performance.
       sizeOffsetPercent: 0, // prefer smaller images
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
@@ -246,17 +247,23 @@
     bindLoader();
 
 
-    // throttled scroll events
-    $w.scroll(function() {
+    // bind to event. default to scroll.
+    $w.on(options.event, function(){
       didScroll = true;
     });
 
-    setInterval(function() {
-      if (didScroll) {
-        didScroll = false;
-        laziestloader();
-      }
-    }, options.scrollThrottle);
+
+    // throttled scroll event
+    if (0 === options.event.indexOf('scroll')) {
+      setInterval(function() {
+        if (didScroll) {
+          didScroll = false;
+          laziestloader();
+        }
+      }, options.scrollThrottle);
+    }
+
+
 
     // reset state on resize
     $w.resize(function() {

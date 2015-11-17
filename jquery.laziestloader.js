@@ -1,5 +1,5 @@
 /**
- * @preserve LaziestLoader - v0.6.3 - 2015-11-16
+ * @preserve LaziestLoader - v0.7.0 - 2015-11-17
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
  * Copyright (c) 2015 Josh Williams; Licensed MIT
@@ -25,10 +25,14 @@
       threshold: 0,
       sizePattern: /{{SIZE}}/ig,
       getSource: getSource,
+      event: 'scroll',
       scrollThrottle: 250, // time in ms to throttle scroll. Increase for better performance.
       sizeOffsetPercent: 0, // prefer smaller images
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
     }, options);
+
+
+    var useNativeScroll = options.event === 'string' && options.event.indexOf('scroll') === 0;
 
     /**
      * Generate source path of image to load. Take into account
@@ -243,20 +247,64 @@
     // element dimensions need to be set.
     $elements.addClass('ll-init ll-notloaded').each(setHeight);
 
+    // initial binding
     bindLoader();
 
 
-    // throttled scroll events
-    $w.scroll(function() {
-      didScroll = true;
-    });
+    // Watch either native scroll events, throttled by
+    // options.scrollThrottle, or a custom event that
+    // implements its own throttling.
 
-    setInterval(function() {
-      if (didScroll) {
-        didScroll = false;
-        laziestloader();
+    if (useNativeScroll) {
+      $w.scroll(function(){
+        didScroll = true;
+      });
+
+      setInterval(function() {
+        if (didScroll) {
+          didScroll = false;
+          laziestloader();
+        }
+      }, options.scrollThrottle);
+
+    } else {
+
+      // if custom event is a function, it'll need
+      // to call laziestloader() manually, like so:
+      //
+      //   $('.g-lazy').laziestloader({
+      //    event: function(cb){
+      //      // custom scroll event on nytimes.com
+      //      PageManager.on('nyt:page-scroll', function(){
+      //       // do something interesting if you like
+      //       // and then call the passed in laziestloader();
+      //       cb();
+      //     });
+      //    }
+      //  });
+      //
+      //
+      // Otherwise, it's a string representing an event on the
+      // window to subscribe to, like so:
+      //
+      // // some code dispatching throttled events
+      // $window.trigger('nytg-scroll');
+      //
+      // $('.g-lazy').laziestloader({
+      //   event: 'nytg-scroll'
+      // });
+      //
+
+      if (typeof options.event === 'function') {
+        options.event(laziestloader);
+      } else {
+        $w.on(options.event, function(){
+          laziestloader();
+        });
       }
-    }, options.scrollThrottle);
+    }
+
+
 
     // reset state on resize
     $w.resize(function() {

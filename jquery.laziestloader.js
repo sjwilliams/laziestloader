@@ -31,6 +31,9 @@
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
     }, options);
 
+
+    var useNativeScroll = options.event.indexOf('scroll') === 0;
+
     /**
      * Generate source path of image to load. Take into account
      * type of data supplied and whether or not a retina
@@ -244,23 +247,30 @@
     // element dimensions need to be set.
     $elements.addClass('ll-init ll-notloaded').each(setHeight);
 
+    // initial binding
     bindLoader();
 
 
-    // bind to event. default to scroll.
-    $w.on(options.event, function(){
-      didScroll = true;
-    });
+    // Watch either native scroll events, throttled by
+    // options.scrollThrottle, or a custom event that
+    // implements its own throttling.
 
+    if (useNativeScroll) {
+      $w.scroll(function(){
+        didScroll = true;
+      });
 
-    // throttled scroll event
-    if (0 === options.event.indexOf('scroll')) {
       setInterval(function() {
         if (didScroll) {
           didScroll = false;
           laziestloader();
         }
       }, options.scrollThrottle);
+
+    } else {
+      $w.on(options.event, function(){
+        laziestloader();
+      });
     }
 
 

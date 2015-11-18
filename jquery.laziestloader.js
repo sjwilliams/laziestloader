@@ -1,5 +1,5 @@
 /**
- * @preserve LaziestLoader - v0.7.0 - 2015-11-17
+ * @preserve LaziestLoader - v0.7.1 - 2015-11-17
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
  * Copyright (c) 2015 Josh Williams; Licensed MIT
@@ -32,7 +32,9 @@
     }, options);
 
 
-    var useNativeScroll = options.event === 'string' && options.event.indexOf('scroll') === 0;
+    var useNativeScroll = (typeof options.event === 'string') && (options.event.indexOf('scroll') === 0);
+
+    console.log('use native scroll', useNativeScroll);
 
     /**
      * Generate source path of image to load. Take into account

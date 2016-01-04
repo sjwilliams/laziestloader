@@ -1,8 +1,8 @@
 /**
- * @preserve LaziestLoader - v0.7.2 - 2015-11-17
+ * @preserve LaziestLoader - v0.7.3 - 2016-01-03
  * A responsive lazy loader for jQuery.
  * http://sjwilliams.github.io/laziestloader/
- * Copyright (c) 2015 Josh Williams; Licensed MIT
+ * Copyright (c) 2016 Josh Williams; Licensed MIT
  */
 
 (function(factory) {

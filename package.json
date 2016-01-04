@@ -1,6 +1,6 @@
 {
   "name": "laziestloader",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "author": "Josh Williams <contact@joshwilliams.com>",
   "description": "A responsive-aware jQuery plugin to smartly lazy load images and trigger callbacks.",
   "repository": {
@@ -17,6 +17,7 @@
   "devDependencies": {
     "uglify-js": "^2.4.13"
   },
+  "main": "jquery.laziestloader.js",
   "scripts": {
     "minify": "uglifyjs jquery.laziestloader.js -c --comments -o jquery.laziestloader.min.js"
   }

@@ -27,7 +27,7 @@
       getSource: getSource,
       event: 'scroll',
       scrollThrottle: 250, // time in ms to throttle scroll. Increase for better performance.
-      sizeOffsetPercent: 0, // prefer smaller images
+      sizeOffsetPercent: 0, // Subtract this % of width from the containing element, and fit images as though the element were that size. 0 = fit to element size; 40 = size - 40%; -30 = size + 30%
       setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
     }, options);
 

@@ -119,6 +119,44 @@ var slothiestLoader = function(options, callback) {
     }
   }
 
+  function slEvListener (e) {
+      var $el = this;
+      var source;
+
+      // set height?
+      if ($el.dataset.ratio) {
+        setHeight.call(this);
+      }
+
+      // set content. default: set element source
+      if (options.setSourceMode) {
+        source = options.getSource($el);
+        if (source && this.getAttribute('src') !== source) {
+          this.setAttribute('src', source);
+        }
+      }
+
+      // applied immediately to reflect that media has started but,
+      // perhaps, hasn't finished downloading.
+      addClass($el, 'll-loadstarted');
+
+      // Determine when to fire `loaded` event. Wait until
+      // media is truly loaded if possible, otherwise immediately.
+      if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
+        if (this.nodeName === 'IMG') {
+          this.onload = function() {
+            onLoad($el);
+          };
+        } else {
+          this.onloadstart = function() {
+            onLoad($el);
+          };
+        }
+      } else {
+        onLoad($el);
+      }
+  }
+
   /**
    * Attach event handler that sets correct
    * media source for the elements' width, or
@@ -129,43 +167,7 @@ var slothiestLoader = function(options, callback) {
   function bindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.addEventListener('slothiestloader', function(e) {
-          var $el = this;
-          var source;
-
-          // set height?
-          if ($el.dataset.ratio) {
-            setHeight.call(this);
-          }
-
-          // set content. default: set element source
-          if (options.setSourceMode) {
-            source = options.getSource($el);
-            if (source && this.getAttribute('src') !== source) {
-              this.setAttribute('src', source);
-            }
-          }
-
-          // applied immediately to reflect that media has started but,
-          // perhaps, hasn't finished downloading.
-          addClass($el, 'll-loadstarted');
-
-          // Determine when to fire `loaded` event. Wait until
-          // media is truly loaded if possible, otherwise immediately.
-          if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
-            if (this.nodeName === 'IMG') {
-              this.onload = function() {
-                onLoad($el);
-              };
-            } else {
-              this.onloadstart = function() {
-                onLoad($el);
-              };
-            }
-          } else {
-            onLoad($el);
-          }
-      })
+      el.addEventListener('slothiestloader', slEvListener)
     }
   }
 
@@ -176,7 +178,7 @@ var slothiestLoader = function(options, callback) {
   function unbindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.removeEventListener('slothiestloader');
+      el.removeEventListener('slothiestloader', slEvListener);
     }
   }
 

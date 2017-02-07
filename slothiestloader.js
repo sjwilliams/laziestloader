@@ -253,7 +253,8 @@ var slothiestLoader = function(options, callback) {
     data.ratio = data.ratio || data.heightMultiplier; // backwards compatible for old data-height-multiplier code.
 
     if (data.ratio && !isNaN(+data.ratio)) {
-      $el.style.height = Math.round($el.offsetWidth * +data.ratio) + "px"
+      var newHeight = Math.round($el.offsetWidth * +data.ratio)
+      if (newHeight > 0) $el.style.height = newHeight + "px" // avoid 0 offsetWidth when element is display none (different from jQuery)
     }
   }
 

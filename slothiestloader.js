@@ -26,6 +26,7 @@ var slothiestLoader = function(options, callback) {
     setSourceMode: true // plugin sets source attribute of the element. Set to false if you would like to, instead, use the callback to completely manage the element on trigger.
   }
 
+  if (typeof options === 'undefined') options = {}
   for (var x in defaultOptions) {
       if (typeof defaultOptions[x] !== 'undefined' && typeof options[x] == 'undefined') {
           options[x] = defaultOptions[x]

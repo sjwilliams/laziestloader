@@ -1,8 +1,8 @@
 /**
-* @preserve SlothiestLoader - v0.8.0 - 2017-02-07
+* @preserve SlothiestLoader - v1.0.0 - 2017-02-09
 * @preserve LaziestLoader - v0.7.3 - 2016-01-03
-* An even lazier lazy loader based on Josh Williams’s
-* LaziestLoader, but without jQuery
+* An lazy loader based on Josh Williams’s
+* LaziestLoader, but without jQuery dependency
 * See: http://sjwilliams.github.io/laziestloader/
 * Copyright (c) 2016 Josh Williams; Licensed MIT
 */
@@ -120,6 +120,12 @@ var slothiestLoader = function(options, callback) {
     }
   }
 
+  /**
+   * Event listener
+   *
+   * @param  {Event} $e
+   */
+
   function slEvListener (e) {
       var $el = this;
       var source;
@@ -236,10 +242,10 @@ var slothiestLoader = function(options, callback) {
       ) $inview.push(el);
     }
 
-    for (var i = 0; i < $elements.length; ++i) {
-      var el = $elements[i];
-      el.dispatchEvent(slothiestloaderEv)
-      $loaded.push(el)
+    for (var i = 0; i < $inview.length; ++i) {
+      var inviewEl = $inview[i];
+      inviewEl.dispatchEvent(slothiestloaderEv)
+      $loaded.push(inviewEl)
     }
   }
 

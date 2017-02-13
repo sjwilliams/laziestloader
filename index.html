@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>LaziestLoader, a responsive and retina-aware lazy loader for jQuery</title>
+    <title>SlothyLoader, a responsive and retina-aware lazy loader sans jQuery</title>
 </head>
 
 <style>
 body {
-    background: #FDFAF2;
+    background: #FDFDF2;
     color: #555;
     font-family:"Helvetica Neue", sans-serif;
     font-weight: 300;
@@ -278,12 +278,25 @@ li .code {
     </div>
 
     <section class="intro">
+        <h1>SlothyLoader</h1>
+        <p>This is a fork of the acclaimed <a href="http://sjwilliams.github.io/laziestloader/">LaziestLoader</a> by Josh Williams. It uses the same HTML conventions, but doesn't depend on jQuery. Still under development and not entirely tested yet. The following should be consistent documentation, except for the jQuery-specific stuff.</p>
+    </section>
+
+    <section class="installation">
+        <h2>Try SlothyLoader v1.0.0</h2>
+        <ol>
+            <li><a href="https://raw.githubusercontent.com/bizweekgraphics/slothy-loader/v1.0.0/slothy-loader.js">Development Version</a></li>
+            <li><a href="https://raw.githubusercontent.com/bizweekgraphics/slothy-loader/v1.0.0/slothy-loader.min.js">Production Version</a></li>
+        </ol>
+    </section>
+
+    <section class="intro">
         <h1>LaziestLoader</h1>
         <p>Speed up your responsive and retina-aware website with LaziestLoader, a jQuery plugin that loads, from an array of sources, the most appropriate image at the last possible moment, and updates the image after a resize if needed. Custom callbacks and configuration provide even more functionality, like loading non-image elements and generic scroll-based triggers.</p>
     </section>
 
     <section class="installation">
-        <h2>Download v0.7.2</h2>
+        <h2>Download LaziestLoader v0.7.2</h2>
         <ol>
             <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.7.2/jquery.laziestloader.js">Development Version</a></li>
             <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.7.2/jquery.laziestloader.min.js">Production Version</a></li>
@@ -822,14 +835,5 @@ $('div').laziestloader({
     });
     </script>
 
-    <div id="forkongithub"><a href="https://github.com/sjwilliams/laziestloader">Fork me on GitHub</a></div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-1861183-13', 'sjwilliams.github.io');
-      ga('send', 'pageview');
-    </script>
 </body>
 </html>

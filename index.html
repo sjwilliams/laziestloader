@@ -378,7 +378,7 @@ li .code {
 
     <section class="prep">
         <h2>HTML/CSS Prep</h2>
-        <p>Your image element should include a default image. A transparent GIF will do. You may also want to add a class to simplify your query selector in a moment. By default, elements with class "dvz-lazy" are lazy-loaded when calling slothyLoader without a selector value in its options.</p>
+        <p>Your image element should include a default image. A 1x1 transparent GIF or PNG will do. You can also use a base64-encoded image as your src attribute, such as <span class="code">data:image/gif;base64,R0lGODlhCgAKAIAAAB8fHwAAACH5BAEAAAAALAAAAAAKAAoAAAIIhI+py+0PYysAOw==</span>. You may also want to add a class to simplify your query selector in a moment. By default, elements with class "dvz-lazy" are lazy-loaded when calling slothyLoader without a selector value in its options.</p>
         <code>&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot;&gt;</code>
 
         <p>SlothyLoader works by finding the best-sized source image to match the target image element's current width. Since "img" elements are inline elements, they'll only have as much width at the current image, which will most likely be very small, like a 1px transparent gif. To ensure the plugin works correctly, you need to make sure the "img" element reports the width you want it to be. One way is to force it to fill its container element with CSS.</p>

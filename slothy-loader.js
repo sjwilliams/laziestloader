@@ -301,7 +301,7 @@ var slothyLoader = function(options, callback) {
     if (typeof options.event === 'function') {
       options.event(slothyloader);
     } else {
-      window.on(options.event, function(){
+      window.addEventListener(options.event, function(){
         slothyloader();
       });
     }

@@ -567,10 +567,10 @@ slothyLoader({selector: &quot;.dvz-lazy&quot;})
             <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule.
                 <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em>
             </p>
-            <iframe class="iframe" data-src="//www.youtube.com/embed/Ga3maNZ0x0w" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
+            <iframe class="iframe" data-src="//www.youtube.com/embed/k3HanxEFFlk" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
             <pre class="code">
 // html
-&lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/Ga3maNZ0x0w&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/k3HanxEFFlk&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
 // js
 slothyLoader({selector: &quot;.iframe&quot;, threshold: 300, setHeight: true})
@@ -594,7 +594,7 @@ slothyLoader({
     setSourceMode: false // this is the important bit!
 }, function() {
     cb.call(this);
-    var height = Math.round(this.offsetWidth * 0.5625);
+    var height = Math.ceil(this.offsetWidth * 0.5625);
     this.innerHTML = '&lt;p style=&quot;text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;&quot;&gt;Boom!&lt;/p&gt;'
 });
                 </pre>
@@ -736,7 +736,7 @@ for (var i = 0; i &lt; $elements.length; ++i) {
             threshold: 100,
             getSource: function($el) {
                 var width = $el.offsetWidth;
-                var height = Math.round(width * 0.5625);
+                var height = Math.ceil(width * 0.5625);
                 return 'http://placekitten.com/' + width + '/' + height;
             }
         }, cb);

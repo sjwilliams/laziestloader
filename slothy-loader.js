@@ -400,7 +400,7 @@ var slothyLoader = function(options, callback) {
   });
 
   // initial check for lazy images
-  document.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('DOMContentLoaded', function() {
     slothyloader();
   });
 

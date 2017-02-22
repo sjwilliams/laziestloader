@@ -1,5 +1,5 @@
 /**
-* @preserve SlothiestLoader - v1.0.0 - 2017-02-09
+* @preserve SlothyLoader - v1.0.0 - 2017-02-21
 * @preserve LaziestLoader - v0.7.3 - 2016-01-03
 * An lazy loader based on Josh Williams’s
 * LaziestLoader, but without jQuery dependency
@@ -7,7 +7,9 @@
 * Copyright (c) 2016 Josh Williams; Licensed MIT
 */
 
-var slothiestLoader = function(options, callback) {
+var slothyLoader = function(options, callback) {
+
+  var slothyloaderEv = new CustomEvent('slothyloader');
 
   var $elements = null,
     $loaded = [], // elements with the correct source set
@@ -97,7 +99,7 @@ var slothiestLoader = function(options, callback) {
         source = source.replace(options.sizePattern, bestFit($el.offsetWidth, parsedWidths));
       }
     } else {
-      source = retina ? data.srcRetina : data.src;
+      source = retina3x ? data.srcRetina3x : retina ? data.srcRetina : data.src;
       source = source || data.src;
     }
 
@@ -174,7 +176,7 @@ var slothiestLoader = function(options, callback) {
   function bindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.addEventListener('slothiestloader', slEvListener)
+      el.addEventListener('slothyloader', slEvListener)
     }
   }
 
@@ -185,7 +187,7 @@ var slothiestLoader = function(options, callback) {
   function unbindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.removeEventListener('slothiestloader', slEvListener);
+      el.removeEventListener('slothyloader', slEvListener);
     }
   }
 
@@ -197,7 +199,7 @@ var slothiestLoader = function(options, callback) {
    * @return {Number}
    */
 
-  var bestFit = slothiestLoader.bestFit = function(targetWidth, widths) {
+  var bestFit = slothyLoader.bestFit = function(targetWidth, widths) {
     var selectedWidth = widths[widths.length - 1],
       i = widths.length,
       offset = targetWidth * (options.sizeOffsetPercent / 100);
@@ -222,7 +224,7 @@ var slothiestLoader = function(options, callback) {
    * the threshold, load their media
    */
 
-  function slothiestloader() {
+  function slothyloader() {
     var docEl = document.documentElement;
     var wHeight = window.innerHeight || docEl.clientHeight;
     var wWidth = window.innerWidth || docEl.clientWidth;
@@ -244,7 +246,7 @@ var slothiestLoader = function(options, callback) {
 
     for (var i = 0; i < $inview.length; ++i) {
       var inviewEl = $inview[i];
-      inviewEl.dispatchEvent(slothiestloaderEv)
+      inviewEl.dispatchEvent(slothyloaderEv)
       $loaded.push(inviewEl)
     }
   }
@@ -290,17 +292,17 @@ var slothiestLoader = function(options, callback) {
     setInterval(function() {
       if (didScroll) {
         didScroll = false;
-        slothiestloader();
+        slothyloader();
       }
     }, options.scrollThrottle);
 
   } else {
 
     if (typeof options.event === 'function') {
-      options.event(slothiestloader);
+      options.event(slothyloader);
     } else {
-      window.on(options.event, function(){
-        slothiestloader();
+      window.addEventListener(options.event, function(){
+        slothyloader();
       });
     }
 
@@ -394,12 +396,12 @@ var slothiestLoader = function(options, callback) {
     $loaded = [];
     unbindLoader();
     bindLoader();
-    slothiestloader();
+    slothyloader();
   });
 
   // initial check for lazy images
-  document.addEventListener('DOMContentLoaded', function() {
-    slothiestloader();
+  window.addEventListener('DOMContentLoaded', function() {
+    slothyloader();
   });
 
   return this;
@@ -423,6 +425,4 @@ var slothiestLoader = function(options, callback) {
   window.CustomEvent = CustomEvent;
 })();
 
-var slothiestloaderEv = new CustomEvent('slothiestloader');
-
-module.exports = slothiestLoader
+if (typeof module !== 'undefined') module.exports = slothyLoader

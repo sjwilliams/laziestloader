@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>SlothiestLoader, a responsive and retina-aware lazy loader sans jQuery</title>
+    <title>SlothyLoader, a responsive and retina-aware lazy loader sans jQuery</title>
 </head>
 
 <style>
@@ -278,32 +278,16 @@ li .code {
     </div>
 
     <section class="intro">
-        <h1>SlothiestLoader</h1>
-        <p>This is a fork of the acclaimed <a href="http://sjwilliams.github.io/laziestloader/">LaziestLoader</a> by Josh Williams. It uses the same HTML conventions, but doesn't depend on jQuery. Still under development and not entirely tested yet. The following should be consistent documentation, except for the jQuery-specific stuff.</p>
+        <h1>SlothyLoader</h1>
+        <p>This is a fork of the acclaimed <a href="http://sjwilliams.github.io/laziestloader/">LaziestLoader</a> by Josh Williams. It uses the same HTML conventions, but doesn't depend on jQuery. Still under development and not entirely tested yet.</p>
     </section>
 
     <section class="installation">
-        <h2>Try SlothiestLoader v1.0.0</h2>
+        <h2>Try SlothyLoader v1.0.0</h2>
         <ol>
-            <li><a href="https://raw.githubusercontent.com/bizweekgraphics/slothiestloader/v1.0.0/slothiestloader.js">Development Version</a></li>
-            <li><a href="https://raw.githubusercontent.com/bizweekgraphics/slothiestloader/v1.0.0/slothiestloader.min.js">Production Version</a></li>
+            <li><a href="https://raw.githubusercontent.com/bizweekgraphics/slothy-loader/v1.0.0/slothy-loader.js">Development Version</a></li>
+            <li><a href="https://raw.githubusercontent.com/bizweekgraphics/slothy-loader/v1.0.0/slothy-loader.min.js">Production Version</a></li>
         </ol>
-    </section>
-
-    <section class="intro">
-        <h1>LaziestLoader</h1>
-        <p>Speed up your responsive and retina-aware website with LaziestLoader, a jQuery plugin that loads, from an array of sources, the most appropriate image at the last possible moment, and updates the image after a resize if needed. Custom callbacks and configuration provide even more functionality, like loading non-image elements and generic scroll-based triggers.</p>
-    </section>
-
-    <section class="installation">
-        <h2>Download LaziestLoader v0.7.2</h2>
-        <ol>
-            <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.7.2/jquery.laziestloader.js">Development Version</a></li>
-            <li><a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/v0.7.2/jquery.laziestloader.min.js">Production Version</a></li>
-            <li><span class="code">$ npm install laziestloader</span></li>
-            <li><span class="code">$ bower install laziestloader</span></li>
-        </ol>
-
     </section>
 
     <section class="prep">
@@ -370,17 +354,37 @@ li .code {
                 </ul>
             </li>
         </ol>
+
+        <h4>Retina 3x</h4>
+        <p>The iPhone 6/6S/7 Plus devices, as well as a number of <a href="https://material.io/devices/">Android devices</a>, now support a pixel ratio of 3 or more. SlothyLoader supports this higher ratio, when <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio">devicePixelRatio</a> is detected to be above 2, and you can use the naming convention you like to specify that retina 3x source.</p>
+        <ol>
+            <li>
+                <ul>
+                    <li>/images/pony-1300@3x.jpg</li>
+                    <li>/images/pony-900@3x.jpg</li>
+                    <li>/images/pony-640@3x.jpg</li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li>/images/retina3x-large/pony.jpg</li>
+                    <li>/images/retina3x-medium/pony.jpg</li>
+                    <li>/images/retina3x-small/pony.jpg</li>
+                </ul>
+            </li>
+        </ol>
+
     </section>
 
     <section class="prep">
         <h2>HTML/CSS Prep</h2>
-        <p>Your image element should include a default image. A 1px transparent png or gif will work fine. You may also want to add a class to simplify your jQuery selector in a moment.</p>
-        <code>&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot;&gt;</code>
+        <p>Your image element should include a default image. A 1x1 transparent GIF or PNG will do. You can also use a base64-encoded image as your src attribute, such as <tt>data:image/gif;base64,R0lGODlhCgAKAIAAAB8fHwAAACH5BAEAAAAALAAAAAAKAAoAAAIIhI+py+0PYysAOw==</tt>. You may also want to add a class to simplify your query selector in a moment. By default, elements with class "dvz-lazy" are lazy-loaded when calling slothyLoader without a selector value in its options.</p>
+        <code>&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot;&gt;</code>
 
-        <p>LaziestLoader works by finding the best-sized source image to match the target image element's current width. Since "img" elements are inline elements, they'll only have as much width at the current image, which will most likely be very small, like a 1px transparent gif. To ensure the plugin works correctly, you need to make sure the "img" element reports the width you want it to be. One way is to force it to fill its container element with CSS.</p>
+        <p>SlothyLoader works by finding the best-sized source image to match the target image element's current width. Since "img" elements are inline elements, they'll only have as much width at the current image, which will most likely be very small, like a 1px transparent gif. To ensure the plugin works correctly, you need to make sure the "img" element reports the width you want it to be. One way is to force it to fill its container element with CSS.</p>
          <code>
-         img.lazy{
-            display:block;
+         img.dvz-lazy{
+            display: block;
             width: 100%;
          }
          </code>
@@ -393,98 +397,111 @@ li .code {
         <div class="example">
             <h3>Non-responsive</h3>
             <p>The most basic method simply sets the src attribute as the element enters the viewport.</p>
-            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
+            <img class="dvz-lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/753e75/fff.png">
             <pre class="code">
 // html
-&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/753e75/fff.png&quot;&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
         <div class="example">
             <h3>Non-responsive w/ Retina</h3>
             <p>Specify a standard and an optional retina image.</p>
-            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
+            <img class="dvz-lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/2a2a2a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/2a2a2a/fff.png">
             <pre class="code">
 // html
-&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/2a2a2a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/2a2a2a/fff.png&quot;&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
         <div class="example small">
             <h3>Non-responsive w/ Retina, smaller element</h3>
             <p>Basic example always loads the same image, regardess of element width.</p>
-            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png">
+            <img class="dvz-lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png">
             <pre class="code">
 // html
-&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot;&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
+            </pre>
+        </div>
+
+        <div class="example">
+            <h3>Non-responsive w/ Retina 3x</h3>
+            <p>Specify a standard image, an optional retina image at double the original resolution, and an optional retina 3x image at three times the original resolution. If you don't specify a regular retina image (2x), then the standard image will load on retina screens (which we consider to be anything that has a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio">devicePixelRatio</a> above 1). You can force a 3x device pixel ratio by using your device toolbar in your browser's dev tools.</p>
+            <img class="dvz-lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/3a3a3a/fff.png" data-src-retina="http://dummyimage.com/2800x1400/3a3a3a/fff.png" data-src-retina3x="http://dummyimage.com/4200x2100/3a3a3a/fff.png">
+            <pre class="code">
+// html
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/2800x1400/3a3a3a/fff.png&quot; data-src-retina=&quot;http://dummyimage.com/4200x2100/3a3a3a/fff.png&quot;&gt;
+
+// js
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
         <div class="example">
             <h3>Responsive</h3>
-            <p>Go beyond a single source by providing a URL that has a width as part of the path or name.</p>
-            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+            <p>Go beyond a single source by providing a URL that has a width as part of the path or name. This example works with retina patterns too.</p>
+            <img class="dvz-lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
 
             <pre class="code">
 // html
-&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
         <div class="example small">
             <h3>Responsive, smaller element</h3>
             <p>Load a smaller image, if possible.</p>
-            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
+            <img class="dvz-lazy" src="img/transparent.gif" data-pattern="img/ar-{{size}}.jpg" data-widths="[320, 900, 1500]">
             <pre class="code">
 
 // html
-&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar-{{size}}.jpg&quot; data-widths=&quot;[320, 900, 1500]&quot;&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
         <div class="example">
             <h3>Responsive w/ Slugs</h3>
             <p>You can select a sized image that doesn't use the width value in the file name or path.</p>
-            <img class="lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
+            <img class="dvz-lazy" src="img/transparent.gif" data-pattern="img/ar2-{{size}}.jpg" data-widths='[{"size":320,"slug":"small"}, {"size":900, "slug":"medium"}, {"size":1500, "slug":"large"}]'>
 
             <pre class="code">
 
 // html
-&lt;img class=&quot;lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;
+&lt;img class=&quot;dvz-lazy&quot; src=&quot;img/transparent.gif&quot; data-pattern=&quot;img/ar2-{{size}}.jpg&quot; data-widths='[{&quot;size&quot;:320,&quot;slug&quot;:&quot;small&quot;}, {&quot;size&quot;:900, &quot;slug&quot;:&quot;medium&quot;}, {&quot;size&quot;:1500, &quot;slug&quot;:&quot;large&quot;}]'&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
         <div class="example">
             <h3>Callback</h3>
             <p>Pass in a callback to excute custom code after the src attribute has been changed. That's how the updating "elements loaded" bar below works.</p>
-            <img class="lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/5a5a5a/fff.png">
+            <img class="dvz-lazy" src="img/transparent.gif" data-src="http://dummyimage.com/1400x700/5a5a5a/fff.png">
             <pre class="code">
 //html
 &lt;img class=&quot;callback&quot; src=&quot;img/transparent.gif&quot; data-src=&quot;http://dummyimage.com/1400x700/5a5a5a/fff.png&quot;&gt;
 
 // js
 var totalLoaded = 0;
-$(&quot;img.callback&quot;).laziestloader({ threshold: 100}, function() {
+slothyLoader({ selector: &quot;img.callback&quot;, threshold: 100}, function() {
     totalLoaded += 1;
-    $(&quot;#total&quot;).html(totalLoaded);
+    document.getElementById(&quot;total&quot;).innerHTML = totalLoaded;
 });
                 </pre>
         </div>
@@ -498,10 +515,11 @@ $(&quot;img.callback&quot;).laziestloader({ threshold: 100}, function() {
 &lt;img class=&quot;custom&quot; src=&quot;img/transparent.gif&quot;&gt;
 
 // js
-$(&quot;img.custom&quot;).laziestloader({
+slothyLoader({
+    selector: &quot;img.custom&quot;,
     threshold: 100,
     getSource: function($el) {
-        var width = $el.width();
+        var width = $el.offsetWidth;
         var height = Math.round(width * 0.5625);
         return 'http://placekitten.com/'+width+'/'+height;
     }
@@ -518,12 +536,13 @@ $(&quot;img.custom&quot;).laziestloader({
 &lt;img class=&quot;bestfit&quot; src=&quot;img/transparent.gif&quot;&gt;
 
 // js
-$(&quot;img.bestfit&quot;).laziestloader({
+slothyLoader({
+    selector: &quot;img.bestfit&quot;,
     threshold: 100,
     getSource: function($el) {
-        var width = $().laziestloader.bestFit($el.width(), [200, 700, 900, 1200]);
+        var width = slothyLoader.bestFit($el.offsetWidth, [200, 700, 900, 1200]);
         var height = Math.round(width * 0.5625);
-        return 'http://placekitten.com/'+width+'/'+height;
+        return &quot;http://placekitten.com/&quot; + width + &quot;/&quot; + height;
     }
 });
                 </pre>
@@ -532,14 +551,14 @@ $(&quot;img.bestfit&quot;).laziestloader({
         <div class="example">
             <h3>Video</h3>
             <p>Images aren't the only things with 'src' attributes. Try a video.</p>
-            <video class="lazy" autoplay loop data-pattern="http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4" data-widths="[640, 900]"></video>
+            <video class="dvz-lazy" autoplay loop data-pattern="examples/earth-{{size}}.mp4" data-widths="[640, 960, 1280]"></video>
             <pre class="code">
 
 // html
-&lt;video class=&quot;lazy&quot; autoplay loop data-pattern=&quot;http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4&quot; data-widths=&quot;[640, 900]&quot;&gt;&lt;/video&gt;
+&lt;video class=&quot;dvz-lazy&quot; autoplay loop data-pattern=&quot;http://joshwilliams.com/projects/sunset-flipbook/videos/bridge-{{size}}.mp4&quot; data-widths=&quot;[640, 900]&quot;&gt;&lt;/video&gt;
 
 // js
-$('.lazy').laziestloader();
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
             </pre>
         </div>
 
@@ -548,13 +567,13 @@ $('.lazy').laziestloader();
             <p>Often in responsive applications it's useful to set the height of an element before the source is loaded so the element will pre-fill the correct amount of space. In this example, because iFrames also have src attributes but need their sizes specified to be useful, we'll set the height via the plugin. The height is determined by multipling the element width by the 'data-ratio' vaule.
                 <em>Note: This example will not be responsive because the iFrame content from YouTube isn't smart enough to repsond to the changing viewport.</em>
             </p>
-            <iframe class="iframe" data-src="//www.youtube.com/embed/fNlxKH9Jtmc" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
+            <iframe class="iframe" data-src="//www.youtube.com/embed/c8aFcHFu8QM" data-ratio="0.5625" frameborder="0" allowfullscreen></iframe>
             <pre class="code">
 // html
-&lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/fNlxKH9Jtmc&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe class=&quot;iframe&quot; data-src=&quot;//www.youtube.com/embed/c8aFcHFu8QM&quot; data-ratio=&quot;0.5625&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
 // js
-$('.iframe').laziestloader({threshold:300});
+slothyLoader({selector: &quot;.iframe&quot;, threshold: 300, setHeight: true})
                 </pre>
         </div>
 
@@ -562,19 +581,21 @@ $('.iframe').laziestloader({threshold:300});
 
         <div class="example">
             <h3>Completely Custom Behavior /w Callback</h3>
-            <p>Need more control than custom source path generation? For example, you might want to completely rewrite the contents of your element. You can have your callback do all the work, sidestepping much of LaziestLoader's functionality.</p>
+            <p>Need more control than custom source path generation? For example, you might want to completely rewrite the contents of your element. You can have your callback do all the work, sidestepping much of SlothyLoader's functionality.</p>
             <div class="override"></div>
             <pre class="code">
 // html
 &lt;div class=&quot;override&quot;&gt;&lt;/div&gt;
 
 // js
-$('div.override').laziestloader({
+slothyLoader({
+    selector: &quot;div.override&quot;,
     threshold: 100,
     setSourceMode: false // this is the important bit!
-}, function(){
-    var height = Math.round($(this).width() * 0.5625);
-    $(this).html('&lt;p style=&quot;text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;&quot;&gt;Boom!&lt;/p&gt;')
+}, function() {
+    cb.call(this);
+    var height = Math.ceil(this.offsetWidth * 0.5625);
+    this.innerHTML = '&lt;p style=&quot;text-align:center; height: '+height+'px; line-height:'+height+'px;-webkit-animation: pulse 10s infinite alternate;&quot;&gt;Boom!&lt;/p&gt;'
 });
                 </pre>
         </div>
@@ -589,26 +610,26 @@ $('div.override').laziestloader({
         <p>If you want your images to load earlier than that, lets say 200px before they appear on the screen, specify the threshold in the options object.</p>
 
        <code>
-        $("img").laziestloader({threshold: 200});
+        slothyLoader({selector:&quot;img&quot;, threshold: 200});
        </code>
 
         <h3>scrollThrottle</h3>
         <p>To increase performance, the position of lazy loading elements are only checked every 250ms while scrolling. If you need to perform the check more often, lower the number. If scroll performance is an issue -- likely if there are lots of elements -- increase the number.</p>
         <code>
-        $("img").laziestloader({scrollThrottle: 300});
+        slothyLoader({selector:&quot;img&quot;, scrollThrottle: 300});
         </code>
 
         <h3>sizeOffsetPercent</h3>
         <p>The crop selection logic works by picking the image that is greater than or equal to the size of the current element. If you prefer to scale smaller images into larger elements, set this between 0 and 100, where the value is the percent width of the containing element you want to subtract from the math logic. The bigger the number, the smaller the image that'll be selected.
         </p>
         <code>
-        $("img").laziestloader({sizeOffsetPercent: 10});
+        slothyLoader({selector:&quot;img&quot;, sizeOffsetPercent: 10});
         </code>
 
         <h3>sizePattern</h3>
         <p>The regular expression used to search your string, to be replaced by the width number or slug. The default is `/{{SIZE}}/ig`, which finds the string `size`, regardless of case, inside of '{' style double brackets. Example: `/path/name-{{size}}.jpg`. Changing this option is useful if, for example, you have Mustache-style templates rendered on the server that would also match the default laziestloader.js pattern and be rendered blank before our client code runs. Many characters have special meaning and can't be used. A nice alternal pattern is:</p>
         <code>
-        $("img").laziestloader({sizePattern: /%size%/ig});
+        slothyLoader({selector:&quot;img&quot;, sizePattern: /%size%/ig});
         </code>
 
         <h3>setSourceMode</h3>
@@ -617,10 +638,11 @@ $('div.override').laziestloader({
         <pre class="code">
 &lt;div&gt;&lt;p&gt;Replace me&lt;/p&gt;&lt;/div&gt;
 
-$('div').laziestloader({
+slothyLoader({
+    selector: &quot;div&quot;,
     setSourceMode: false
 }, function(){
-    $(this).html('&lt;div&gt;&lt;p&gt;New content&lt;/p&gt;&lt;/div&gt;')
+    this.innerHTML = '&lt;div&gt;&lt;p&gt;New content&lt;/p&gt;&lt;/div&gt;'
 });
         </pre>
     </section>
@@ -628,161 +650,63 @@ $('div').laziestloader({
     <section>
         <h2>Trigger</h2>
         <p>You can trigger element loading without scrolling the element into view.</p>
-        <code>
-        $("img.lazy").trigger("laziestloader");
-        </code>
+        <pre class="code">
+slothyLoader({selector: &quot;.dvz-lazy&quot;})
+var slothyloaderEv = new CustomEvent('slothyloader');
+var $elements = document.querySelectorAll('.dvz-lazy')
+for (var i = 0; i &lt; $elements.length; ++i) {
+    var $el = $elements[i];
+    $el.dispatchEvent(slothyloaderEv)
+}
+        </pre>
     </section>
 
     <section id="releasehistory">
         <h2>Release History</h2>
-        <h4>0.7.3</h4>
+        <h4>1.0.0</h4>
         <ul>
-            <li>Added "main": "jquery.laziestloader.js" to package.json</li>
+            <li>First release, forked from <a href="http://sjwilliams.github.io/laziestloader/#releasehistory">LaziestLoader</a></li>
         </ul>
-        <h4>0.7.2</h4>
-        <ul>
-            <li>Removed stray console.log. Sorry.</li>
-        </ul>
-
-        <h4>0.7.1</h4>
-        <ul>
-            <li>Fixed bug in detecting if watched event should be native scroll.</li>
-        </ul>
-
-        <h4>0.7.0</h4>
-        <ul>
-            <li>Allow custom events, beyond the native scroll event, to trigger LaziestLoader. See <a href="https://github.com/sjwilliams/laziestloader/pull/16">Issue 16</a>.</li>
-        </ul>
-
-        <h4>0.6.3</h4>
-        <ul>
-            <li>Wait until $(document).ready() to perform initial check of lazy images.</li>
-        </ul>
-
-        <h4>0.6.2</h4>
-        <ul>
-            <li>Added a class of "ll-loadstarted" to indicte that media has started but, perhaps, hasn't finished downloading.</li>
-        </ul>
-
-        <h4>0.6.1</h4>
-        <ul>
-            <li>Correct copyright date.</li>
-        </ul>
-
-        <h4>0.6.0</h4>
-        <ul>
-            <li>Adding horizontal checks for sideways scrolling.</li>
-        </ul>
-
-        <h4>0.5.2</h4>
-        <ul>
-            <li>Tiny comment fix.</li>
-        </ul>
-
-        <h4>0.5.1</h4>
-        <ul>
-            <li>Loaded state fired, if possible, when media actually loads, not simply triggered by viewport position. See <a href="https://github.com/sjwilliams/laziestloader/issues/8">Issue 8</a>.</li>
-        </ul>
-
-        <h4>0.5.0</h4>
-        <ul>
-            <li>Classes added to element to reflect state.  See <a href="https://github.com/sjwilliams/laziestloader/issues/8">Issue 8</a>.</li>
-            <li>Changed name of npm task that builds minifed version.</li>
-        </ul>
-
-        <h4>0.4.1</h4>
-        <ul>
-            <li>Correct link to production source.</li>
-        </ul>
-
-        <h4>0.4.0</h4>
-        <ul>
-            <li>Added minified version and npm build task to generate it.</li>
-            <li>Moved all documentation from README.md to redesigned project page.</li>
-        </ul>
-
-        <h4>0.3.0</h4>
-        <ul>
-            <li>Exposed `bestFit` method so it can be used in callbacks.  See <a href="https://github.com/sjwilliams/laziestloader/issues/4">Issue 4</a>.</li>
-        </ul>
-
-        <h4>0.2.0</h4>
-        <ul>
-            <li>Added a scrollThrottle option, and set a reasonable default. See <a href="https://github.com/sjwilliams/laziestloader/issues/5">Issue 5</a>.</li>
-            <li>Changed data-height-multiplier to data-ratio, and deprecated original. See <a href="https://github.com/sjwilliams/laziestloader/issues/6">Issue 6</a>.</li>
-        </ul>
-
-        <h4>0.1.2</h4>
-        <ul>
-            <li>Fixed <a href="https://github.com/sjwilliams/laziestloader/issues/1">Issue 1</a>, bug with non-sorted input.</li>
-        </ul>
-
-        <h4>0.1.1</h4>
-        <ul>
-            <li>Added `sizePattern` option.</li>
-        </ul>
-
-        <h4>0.1.0</h4>
-        <ul>
-            <li>Added `sizeOffsetPercent` option.</li>
-        </ul>
-
-        <h4>0.0.2</h4>
-        <ul>
-            <li>AMD module</li>
-            <li>Enforce style with .editorconfig, .jshintrc and .jsbeautifyrc</li>
-        </ul>
-
-        <h4>0.0.1</h4>
-        <ul>
-            <li>Initial release.</li>
-        </ul>
-
     </section>
-
 
     <section>
         <h2>Credits</h2>
-        <p>LaziestLoader is by <a href="http://joshwilliams.com">Josh Williams</a>. Inspried by Luís Almeida's <a href="http://luis-almeida.github.com/unveil/">unveil</a></p>
+        <p>SlothyLoader is a lazy loader sans jQuery, forked from <a href="https://github.com/sjwilliams/laziestloader">LaziestLoader</a> by <a href="http://joshwilliams.com">Josh Williams</a> at release <a href="https://github.com/sjwilliams/laziestloader/tree/v0.7.3">0.7.3 (2016-01-03)</a>. He said he was inspired by Luís Almeida's <a href="http://luis-almeida.github.com/unveil/">unveil</a></p>
     </section>
 
     <section>
         <h2>License</h2>
-        <p>LaziestLoader is licensed under the <a href="https://raw.githubusercontent.com/sjwilliams/laziestloader/master/LICENSE">MIT license</a></p>
+        <p>TBD</p>
     </section>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-    window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')
-    </script>
-    <script src="jquery.laziestloader.js"></script>
+    <script src="slothy-loader.js"></script>
 
     <script>
-    $(function() {
+    (function() {
         var totalLoaded = 0;
 
-        var $w = $(window),
-            $status = $('#status'),
-            $examplesContainer = $('.examples');
+        var $w = window,
+            $status = document.getElementById('status'),
+            $examplesContainer = document.querySelectorAll('.examples');
 
         var didScroll = false;
 
         var cb = function() {
             totalLoaded += 1;
-            var src = ($(this).attr('src')) ? $(this).attr('src') : 'Custom content';
-            $('#justloaded').show().html('<span class="kicker">Loading</span>' + src).stop(true, true).delay(700).fadeOut(1500);
-            $('#total').html(totalLoaded);
+            var src = (this.getAttribute('src')) ? this.getAttribute('src') : 'Custom content';
+            //$('#justloaded').show().html('<span class="kicker">Loading</span>' + src).stop(true, true).delay(700).fadeOut(1500);
+            document.getElementById('total').innerHtml = totalLoaded;
         };
 
         var showStatus = function() {
-            if ($w.scrollTop() > $examplesContainer.offset().top) {
-                $status.addClass('active');
+            if ($w.scrollTop > $examplesContainer.offsetTop) {
+                addClass($status, 'active');
             } else {
-                $status.removeClass('active');
+                removeClass($status, 'active');
             }
         };
 
-        $w.scroll(function() {
+        $w.addEventListener("scroll", function(){
             didScroll = true;
         });
 
@@ -792,47 +716,91 @@ $('div').laziestloader({
                 showStatus();
             }
         }, 100);
-
         // standard methods
-        $('.lazy').laziestloader({
+        slothyLoader({selector: '.dvz-lazy'})
+        slothyLoader({
+            selector: '.dvz-lazy',
             threshold: 300
         }, cb);
 
         // iframe
-        $('.iframe').laziestloader({
+        slothyLoader({
+            selector: '.iframe',
             threshold: 300,
             setHeight: true
         }, cb);
 
         // custom methods
-        $('img.custom').laziestloader({
+        slothyLoader({
+            selector: 'img.custom',
             threshold: 100,
             getSource: function($el) {
-                var width = $el.width();
-                var height = Math.round(width * 0.5625);
+                var width = $el.offsetWidth;
+                var height = Math.ceil(width * 0.5625);
                 return 'http://placekitten.com/' + width + '/' + height;
             }
         }, cb);
 
         // override
-        $('div.override').laziestloader({
+        slothyLoader({
+            selector: 'div.override',
             threshold: 100,
             setSourceMode: false
         }, function() {
             cb.call(this);
-            var height = Math.round($(this).width() * 0.5625);
-            $(this).html('<p style="text-align:center; height: ' + height + 'px; line-height:' + height + 'px;-webkit-animation: pulse 10s infinite alternate;">Boom!</p>')
+            var height = Math.round(this.offsetWidth * 0.5625);
+            this.innerHTML = '<p style="text-align:center; height: ' + height + 'px; line-height:' + height + 'px;-webkit-animation: pulse 10s infinite alternate;">Boom!</p>'
         });
 
-        $('img.bestfit').laziestloader({
+        slothyLoader({
+            selector: 'img.bestfit',
             threshold: 100,
             getSource: function($el) {
-                var width = $().laziestloader.bestFit($el.width(), [200, 700, 900, 1200]);
+                var width = slothyLoader.bestFit($el.offsetWidth, [200, 700, 900, 1200]);
                 var height = Math.round(width * 0.5625);
                 return 'http://placekitten.com/' + width + '/' + height;
             }
         }, cb);
-    });
+
+      // Helpful native HTML functions for class manipulation to replace jQuery equivalents
+
+      function hasClass(el, className) {
+          var classList = className.split(" ")
+          for (var i=0; i<classList.length; i++) {
+              var className = classList[i]
+              if (typeof el.classList !== 'undefined')
+                  return el.classList.contains(className)
+              else
+                  return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+          }
+      }
+
+      function addClass(el, className) {
+          var classList = className.split(" ")
+          for (var i=0; i<classList.length; i++) {
+              var className = classList[i]
+              if (typeof el.classList !== 'undefined') {
+                 el.classList.add(className)
+              } else {
+                 if (!hasClass(el, className)) el.className += " " + className
+              }
+          }
+      }
+
+      function removeClass(el, className) {
+          var classList = className.split(" ")
+          for (var i=0; i<classList.length; i++) {
+              var className = classList[i]
+              if (typeof el.classList !== 'undefined')
+                  el.classList.remove(className)
+              else if (hasClass(el, className)) {
+                  var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+                  el.className=el.className.replace(reg, ' ')
+              }
+          }
+      }
+
+    })();
     </script>
 
 </body>

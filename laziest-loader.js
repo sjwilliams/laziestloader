@@ -30,9 +30,9 @@ var slothyLoader = function(options, callback) {
 
   if (typeof options === 'undefined') options = {}
   for (var x in defaultOptions) {
-      if (typeof defaultOptions[x] !== 'undefined' && typeof options[x] == 'undefined') {
-          options[x] = defaultOptions[x]
-      }
+    if (typeof defaultOptions[x] !== 'undefined' && typeof options[x] == 'undefined') {
+      options[x] = defaultOptions[x];
+    }
   }
 
   $elements = document.querySelectorAll(options["selector"])

@@ -397,15 +397,17 @@ var laziestLoader = function(options, callback) {
     unbindLoader();
     bindLoader();
     laziestloader();
-  });
+  }, false);
 
   // initial check for lazy images
-  window.addEventListener('DOMContentLoaded', function() {
+  if (document.readyState === "complete" || document.readyState === "loaded" || document.readyState === "interactive") {
     laziestloader();
-  });
+  } else {
+    window.addEventListener('DOMContentLoaded', laziestloader, false);
+  }
 
   return this;
-};
+}
 
 // CustomEvent is to provide support for Event in Internet Explorer
 

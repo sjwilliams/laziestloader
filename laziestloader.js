@@ -18,7 +18,7 @@ var slothyLoader = function(options, callback) {
     didScroll = false;
 
   var defaultOptions = {
-    selector: '.dvz-lazy',
+    selector: '.laziest',
     threshold: 0,
     sizePattern: /{{SIZE}}/ig,
     getSource: getSource,

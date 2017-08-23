@@ -1,5 +1,5 @@
 {
-  "name": "laziest-loader",
+  "name": "laziestloader",
   "version": "2.0.0",
   "author": "Josh Williams <contact@joshwilliams.com>",
   "contributors": [
@@ -11,7 +11,7 @@
   "description": "A responsive-aware plugin to smartly lazy load images and trigger callbacks.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sjwilliams/laziest-loader.git"
+    "url": "https://github.com/sjwilliams/laziestloader.git"
   },
   "keywords": [
     "scroll",
@@ -22,8 +22,8 @@
   "devDependencies": {
     "uglify-js": "^2.4.13"
   },
-  "main": "laziest-loader.js",
+  "main": "laziestloader.js",
   "scripts": {
-    "minify": "uglifyjs laziest-loader.js -c --comments -o laziest-loader.min.js"
+    "minify": "uglifyjs laziestloader.js -c --comments -o laziestloader.min.js"
   }
 }

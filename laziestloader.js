@@ -7,9 +7,9 @@
 * Copyright (c) 2016 Josh Williams; Licensed MIT
 */
 
-var slothyLoader = function(options, callback) {
+var laziestLoader = function(options, callback) {
 
-  var slothyloaderEv = new CustomEvent('slothyloader');
+  var laziestloaderEv = new CustomEvent('laziestloader');
 
   var $elements = null,
     $loaded = [], // elements with the correct source set
@@ -176,7 +176,7 @@ var slothyLoader = function(options, callback) {
   function bindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.addEventListener('slothyloader', slEvListener)
+      el.addEventListener('laziestloader', slEvListener)
     }
   }
 
@@ -187,7 +187,7 @@ var slothyLoader = function(options, callback) {
   function unbindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.removeEventListener('slothyloader', slEvListener);
+      el.removeEventListener('laziestloader', slEvListener);
     }
   }
 
@@ -199,7 +199,7 @@ var slothyLoader = function(options, callback) {
    * @return {Number}
    */
 
-  var bestFit = slothyLoader.bestFit = function(targetWidth, widths) {
+  var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
     var selectedWidth = widths[widths.length - 1],
       i = widths.length,
       offset = targetWidth * (options.sizeOffsetPercent / 100);
@@ -224,7 +224,7 @@ var slothyLoader = function(options, callback) {
    * the threshold, load their media
    */
 
-  function slothyloader() {
+  function laziestloader() {
     var docEl = document.documentElement;
     var wHeight = window.innerHeight || docEl.clientHeight;
     var wWidth = window.innerWidth || docEl.clientWidth;
@@ -246,7 +246,7 @@ var slothyLoader = function(options, callback) {
 
     for (var i = 0; i < $inview.length; ++i) {
       var inviewEl = $inview[i];
-      inviewEl.dispatchEvent(slothyloaderEv)
+      inviewEl.dispatchEvent(laziestloaderEv)
       $loaded.push(inviewEl)
     }
   }
@@ -292,17 +292,17 @@ var slothyLoader = function(options, callback) {
     setInterval(function() {
       if (didScroll) {
         didScroll = false;
-        slothyloader();
+        laziestloader();
       }
     }, options.scrollThrottle);
 
   } else {
 
     if (typeof options.event === 'function') {
-      options.event(slothyloader);
+      options.event(laziestloader);
     } else {
       window.addEventListener(options.event, function(){
-        slothyloader();
+        laziestloader();
       });
     }
 
@@ -396,12 +396,12 @@ var slothyLoader = function(options, callback) {
     $loaded = [];
     unbindLoader();
     bindLoader();
-    slothyloader();
+    laziestloader();
   });
 
   // initial check for lazy images
   window.addEventListener('DOMContentLoaded', function() {
-    slothyloader();
+    laziestloader();
   });
 
   return this;
@@ -425,4 +425,4 @@ var slothyLoader = function(options, callback) {
   window.CustomEvent = CustomEvent;
 })();
 
-if (typeof module !== 'undefined') module.exports = slothyLoader
+if (typeof module !== 'undefined') module.exports = laziestLoader

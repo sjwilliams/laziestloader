@@ -39,6 +39,7 @@ var laziestLoader = function(options, callback) {
 
   var useNativeScroll = (typeof options.event === 'string') && (options.event.indexOf('scroll') === 0);
 
+
   /**
    * Generate source path of image to load. Take into account
    * type of data supplied and whether or not a retina
@@ -106,6 +107,7 @@ var laziestLoader = function(options, callback) {
     return source;
   }
 
+
   /**
    * Reflect loaded state in class names
    * and fire event.
@@ -121,6 +123,7 @@ var laziestLoader = function(options, callback) {
       callback.call($el);
     }
   }
+
 
   /**
    * Event listener
@@ -166,6 +169,7 @@ var laziestLoader = function(options, callback) {
     }
   }
 
+
   /**
    * Attach event handler that sets correct
    * media source for the elements' width, or
@@ -180,6 +184,7 @@ var laziestLoader = function(options, callback) {
     }
   }
 
+
   /**
    * Remove event handler from elements
    */
@@ -191,6 +196,7 @@ var laziestLoader = function(options, callback) {
     }
   }
 
+
   /**
    * Find the best sized image, opting for larger over smaller
    *
@@ -199,8 +205,7 @@ var laziestLoader = function(options, callback) {
    * @return {Number}
    */
 
-  // var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
-  var bestFit = function(targetWidth, widths) {
+  var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
     var selectedWidth = widths[widths.length - 1];
     var i = widths.length;
     var offset = targetWidth * (options.sizeOffsetPercent / 100);
@@ -218,6 +223,7 @@ var laziestLoader = function(options, callback) {
 
     return selectedWidth;
   };
+
 
   /**
    * Cycle through elements that haven't had their
@@ -252,10 +258,12 @@ var laziestLoader = function(options, callback) {
     }
   }
 
+
   /**
    * Given a lazy element, check if it should have
    * its height set based on a data-ratio multiplier.
    */
+  
   function setHeight() {
     var $el = this;
     var data = $el.dataset;
@@ -268,48 +276,8 @@ var laziestLoader = function(options, callback) {
     }
   }
 
-  // add inital state classes, and check if
-  // element dimensions need to be set.
 
-  for (var i = 0; i < $elements.length; ++i) {
-    var el = $elements[i];
-    addClass(el, 'll-init ll-notloaded')
-    setHeight.call(el);
-  }
-
-  // initial binding
-
-  bindLoader();
-
-  // Watch either native scroll events, throttled by
-  // options.scrollThrottle, or a custom event that
-  // implements its own throttling.
-
-  if (useNativeScroll) {
-    window.addEventListener("scroll", function(){
-      didScroll = true;
-    });
-
-    setInterval(function() {
-      if (didScroll) {
-        didScroll = false;
-        run();
-      }
-    }, options.scrollThrottle);
-
-  } else {
-
-    if (typeof options.event === 'function') {
-      options.event(laziestloader);
-    } else {
-      window.addEventListener(options.event, function(){
-        run();
-      });
-    }
-
-  }
-
-  // Helpful native HTML functions for class manipulation to replace jQuery equivalents
+  // jQuery-like classname helpers
 
   function hasClass(el, className) {
     var classList = className.split(" ");
@@ -394,6 +362,53 @@ var laziestLoader = function(options, callback) {
     // 8. Return false
     return false;
   }
+  
+
+
+  // Kick Off 
+
+
+  // add inital state classes, and check if
+  // element dimensions need to be set.
+
+  for (var i = 0; i < $elements.length; ++i) {
+    var el = $elements[i];
+    addClass(el, 'll-init ll-notloaded')
+    setHeight.call(el);
+  }
+
+  // initial binding
+
+  bindLoader();
+
+  // Watch either native scroll events, throttled by
+  // options.scrollThrottle, or a custom event that
+  // implements its own throttling.
+
+  if (useNativeScroll) {
+    window.addEventListener("scroll", function(){
+      didScroll = true;
+    });
+
+    setInterval(function() {
+      if (didScroll) {
+        didScroll = false;
+        run();
+      }
+    }, options.scrollThrottle);
+
+  } else {
+
+    if (typeof options.event === 'function') {
+      options.event(laziestloader);
+    } else {
+      window.addEventListener(options.event, function(){
+        run();
+      });
+    }
+
+  }
+
 
   // reset state on resize
   window.addEventListener('resize', function() {

@@ -11,11 +11,11 @@ var laziestLoader = function(options, callback) {
 
   var laziestloaderEv = new CustomEvent('laziestloader');
 
-  var $elements = null,
-    $loaded = [], // elements with the correct source set
-    retina = window.devicePixelRatio > 1,
-    retina3x = window.devicePixelRatio > 2,
-    didScroll = false;
+  var $elements = null;
+  var $loaded = []; // elements with the correct source set
+  var retina = window.devicePixelRatio > 1;
+  var retina3x = window.devicePixelRatio > 2;
+  var didScroll = false;
 
   var defaultOptions = {
     selector: '.laziest',
@@ -201,9 +201,9 @@ var laziestLoader = function(options, callback) {
 
   // var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
   var bestFit = function(targetWidth, widths) {
-    var selectedWidth = widths[widths.length - 1],
-      i = widths.length,
-      offset = targetWidth * (options.sizeOffsetPercent / 100);
+    var selectedWidth = widths[widths.length - 1];
+    var i = widths.length;
+    var offset = targetWidth * (options.sizeOffsetPercent / 100);
 
     // sort smallest to largest
     widths.sort(function(a, b) {
@@ -257,8 +257,8 @@ var laziestLoader = function(options, callback) {
    * its height set based on a data-ratio multiplier.
    */
   function setHeight() {
-    var $el = this,
-      data = $el.dataset;
+    var $el = this;
+    var data = $el.dataset;
 
     data.ratio = data.ratio || data.heightMultiplier; // backwards compatible for old data-height-multiplier code.
 
@@ -312,84 +312,87 @@ var laziestLoader = function(options, callback) {
   // Helpful native HTML functions for class manipulation to replace jQuery equivalents
 
   function hasClass(el, className) {
-      var classList = className.split(" ")
-      for (var i=0; i<classList.length; i++) {
-          var className = classList[i]
-          if (typeof el.classList !== 'undefined')
-              return el.classList.contains(className)
-          else
-              return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+    var classList = className.split(" ");
+    for (var i=0; i<classList.length; i++) {
+      var className = classList[i];
+      if (typeof el.classList !== 'undefined'){
+        return el.classList.contains(className);
+      } else {
+        return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
       }
+    }
   }
 
   function addClass(el, className) {
-      var classList = className.split(" ")
-      for (var i=0; i<classList.length; i++) {
-          var className = classList[i]
-          if (typeof el.classList !== 'undefined') {
-             el.classList.add(className)
-          } else {
-             if (!hasClass(el, className)) el.className += " " + className
-          }
+    var classList = className.split(" ");
+    for (var i=0; i<classList.length; i++) {
+      var className = classList[i];
+      if (typeof el.classList !== 'undefined') {
+         el.classList.add(className);
+      } else {
+        if (!hasClass(el, className)) {
+          el.className += " " + className;
+        };
       }
+    }
   }
 
   function removeClass(el, className) {
-      var classList = className.split(" ")
-      for (var i=0; i<classList.length; i++) {
-          var className = classList[i]
-          if (typeof el.classList !== 'undefined')
-              el.classList.remove(className)
-          else if (hasClass(el, className)) {
-              var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
-              el.className=el.className.replace(reg, ' ')
-          }
+    var classList = className.split(" ");
+    for (var i=0; i<classList.length; i++) {
+      var className = classList[i];
+      if (typeof el.classList !== 'undefined'){
+        el.classList.remove(className);
+      } else if (hasClass(el, className)) {
+        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+        el.className=el.className.replace(reg, ' ');
       }
+    }
   }
 
   // https://tc39.github.io/ecma262/#sec-array.prototype.includes
   function includesElement(nodeList, searchElement, fromIndex) {
 
-      // 1. Let O be ? ToObject(this value).
-      if (nodeList == null) {
-        throw new TypeError('"nodeList" is null or not defined');
-      }
+    // 1. Let O be ? ToObject(this value).
+    if (nodeList == null) {
+      throw new TypeError('"nodeList" is null or not defined');
+    }
 
-      var o = Object(nodeList);
+    var o = Object(nodeList);
 
-      // 2. Let len be ? ToLength(? Get(O, "length")).
-      var len = o.length >>> 0;
+    // 2. Let len be ? ToLength(? Get(O, "length")).
+    var len = o.length >>> 0;
 
-      // 3. If len is 0, return false.
-      if (len === 0) {
-        return false;
-      }
-
-      // 4. Let n be ? ToInteger(fromIndex).
-      //    (If fromIndex is undefined, this step produces the value 0.)
-      var n = fromIndex | 0;
-
-      // 5. If n ≥ 0, then
-      //  a. Let k be n.
-      // 6. Else n < 0,
-      //  a. Let k be len + n.
-      //  b. If k < 0, let k be 0.
-      var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-
-      // 7. Repeat, while k < len
-      while (k < len) {
-        // a. Let elementK be the result of ? Get(O, ! ToString(k)).
-        // b. If SameValueZero(searchElement, elementK) is true, return true.
-        // c. Increase k by 1.
-        // NOTE: === provides the correct "SameValueZero" comparison needed here.
-        if (o[k] === searchElement) {
-          return true;
-        }
-        k++;
-      }
-
-      // 8. Return false
+    // 3. If len is 0, return false.
+    if (len === 0) {
       return false;
+    }
+
+    // 4. Let n be ? ToInteger(fromIndex).
+    //    (If fromIndex is undefined, this step produces the value 0.)
+    var n = fromIndex | 0;
+
+    // 5. If n ≥ 0, then
+    //  a. Let k be n.
+    // 6. Else n < 0,
+    //  a. Let k be len + n.
+    //  b. If k < 0, let k be 0.
+    var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+    // 7. Repeat, while k < len
+    while (k < len) {
+      // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+      // b. If SameValueZero(searchElement, elementK) is true, return true.
+      // c. Increase k by 1.
+      // NOTE: === provides the correct "SameValueZero" comparison needed here.
+      if (o[k] === searchElement) {
+        return true;
+      }
+      k++;
+    }
+
+    // 8. Return false
+    return false;
   }
 
   // reset state on resize

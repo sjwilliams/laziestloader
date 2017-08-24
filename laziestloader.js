@@ -1,11 +1,39 @@
 /**
-* @preserve SlothyLoader - v1.0.0 - 2017-02-21
-* @preserve LaziestLoader - v0.7.3 - 2016-01-03
-* An lazy loader based on Josh Williams’s
-* LaziestLoader, but without jQuery dependency
+* @preserve LaziestLoader - v2.0.0 - 2017-08-25
+* 
+* A responsive-aware lazy loader for images, 
+* video or custom callbacks.
+*
+* Originally based on Luis Almeida's Unveil:
+* http://luis-almeida.github.io/unveil/
+*
+* Thanks to @cedricsam and @bizweekgraphics for 
+* a sans-jQuery rewrite.
+* 
 * See: http://sjwilliams.github.io/laziestloader/
-* Copyright (c) 2016 Josh Williams; Licensed MIT
+* Copyright (c) 2017 Josh Williams; Licensed MIT
 */
+
+
+// CustomEvent Polyfill
+// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#Polyfill
+
+(function () {
+
+  if ( typeof window.CustomEvent === "function" ) return false;
+
+  function CustomEvent ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+   }
+
+  CustomEvent.prototype = window.Event.prototype;
+
+  window.CustomEvent = CustomEvent;
+})();
+
 
 var laziestLoader = function(options, callback) {
 
@@ -377,6 +405,7 @@ var laziestLoader = function(options, callback) {
     setHeight.call(el);
   }
 
+
   // initial binding
 
   bindLoader();
@@ -427,26 +456,5 @@ var laziestLoader = function(options, callback) {
 
   return this;
 }
-
-// CustomEvent is to provide support for Event in Internet Explorer
-
-console.log('hiya1');
-(function () {
-
-  console.log('hiya2');
-
-  if ( typeof window.CustomEvent === "function" ) return false;
-
-  function CustomEvent ( event, params ) {
-    params = params || { bubbles: false, cancelable: false, detail: undefined };
-    var evt = document.createEvent( 'CustomEvent' );
-    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-    return evt;
-   }
-
-  CustomEvent.prototype = window.Event.prototype;
-
-  window.CustomEvent = CustomEvent;
-})();
 
 if (typeof module !== 'undefined') module.exports = laziestLoader

@@ -128,7 +128,7 @@ var laziestLoader = function(options, callback) {
    * @param  {Event} $e
    */
 
-  function slEvListener (e) {
+  function onLaziestLoad (e) {
       var $el = this;
       var source;
 
@@ -176,7 +176,7 @@ var laziestLoader = function(options, callback) {
   function bindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.addEventListener('laziestloader', slEvListener)
+      el.addEventListener('laziestloader', onLaziestLoad)
     }
   }
 
@@ -187,7 +187,7 @@ var laziestLoader = function(options, callback) {
   function unbindLoader() {
     for (var i = 0; i < $elements.length; ++i) {
       var el = $elements[i];
-      el.removeEventListener('laziestloader', slEvListener);
+      el.removeEventListener('laziestloader', onLaziestLoad);
     }
   }
 
@@ -199,7 +199,8 @@ var laziestLoader = function(options, callback) {
    * @return {Number}
    */
 
-  var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
+  // var bestFit = laziestLoader.bestFit = function(targetWidth, widths) {
+  var bestFit = function(targetWidth, widths) {
     var selectedWidth = widths[widths.length - 1],
       i = widths.length,
       offset = targetWidth * (options.sizeOffsetPercent / 100);
@@ -224,7 +225,7 @@ var laziestLoader = function(options, callback) {
    * the threshold, load their media
    */
 
-  function laziestloader() {
+  function run() {
     var docEl = document.documentElement;
     var wHeight = window.innerHeight || docEl.clientHeight;
     var wWidth = window.innerWidth || docEl.clientWidth;
@@ -292,7 +293,7 @@ var laziestLoader = function(options, callback) {
     setInterval(function() {
       if (didScroll) {
         didScroll = false;
-        laziestloader();
+        run();
       }
     }, options.scrollThrottle);
 
@@ -302,7 +303,7 @@ var laziestLoader = function(options, callback) {
       options.event(laziestloader);
     } else {
       window.addEventListener(options.event, function(){
-        laziestloader();
+        run();
       });
     }
 
@@ -396,12 +397,12 @@ var laziestLoader = function(options, callback) {
     $loaded = [];
     unbindLoader();
     bindLoader();
-    laziestloader();
+    run();
   }, false);
 
   // initial check for lazy images
   if (document.readyState === "complete" || document.readyState === "loaded" || document.readyState === "interactive") {
-    laziestloader();
+    run();
   } else {
     window.addEventListener('DOMContentLoaded', laziestloader, false);
   }
@@ -411,7 +412,10 @@ var laziestLoader = function(options, callback) {
 
 // CustomEvent is to provide support for Event in Internet Explorer
 
+console.log('hiya1');
 (function () {
+
+  console.log('hiya2');
 
   if ( typeof window.CustomEvent === "function" ) return false;
 

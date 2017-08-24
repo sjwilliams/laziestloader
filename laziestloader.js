@@ -129,41 +129,41 @@ var laziestLoader = function(options, callback) {
    */
 
   function onLaziestLoad (e) {
-      var $el = this;
-      var source;
+    var $el = this;
+    var source;
 
-      // set height?
-      if ($el.dataset.ratio) {
-        setHeight.call(this);
+    // set height?
+    if ($el.dataset.ratio) {
+      setHeight.call(this);
+    }
+
+    // set content. default: set element source
+    if (options.setSourceMode) {
+      source = options.getSource($el);
+      if (source && this.getAttribute('src') !== source) {
+        this.setAttribute('src', source);
       }
+    }
 
-      // set content. default: set element source
-      if (options.setSourceMode) {
-        source = options.getSource($el);
-        if (source && this.getAttribute('src') !== source) {
-          this.setAttribute('src', source);
-        }
-      }
+    // applied immediately to reflect that media has started but,
+    // perhaps, hasn't finished downloading.
+    addClass($el, 'll-loadstarted');
 
-      // applied immediately to reflect that media has started but,
-      // perhaps, hasn't finished downloading.
-      addClass($el, 'll-loadstarted');
-
-      // Determine when to fire `loaded` event. Wait until
-      // media is truly loaded if possible, otherwise immediately.
-      if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
-        if (this.nodeName === 'IMG') {
-          this.onload = function() {
-            onLoad($el);
-          };
-        } else {
-          this.onloadstart = function() {
-            onLoad($el);
-          };
-        }
+    // Determine when to fire `loaded` event. Wait until
+    // media is truly loaded if possible, otherwise immediately.
+    if (options.setSourceMode && (this.nodeName === 'IMG' || this.nodeName === 'VIDEO' || this.nodeName === 'AUDIO') ) {
+      if (this.nodeName === 'IMG') {
+        this.onload = function() {
+          onLoad($el);
+        };
       } else {
-        onLoad($el);
+        this.onloadstart = function() {
+          onLoad($el);
+        };
       }
+    } else {
+      onLoad($el);
+    }
   }
 
   /**

@@ -468,5 +468,15 @@
     define([], function() {
       return laziestloader;
     });
+  } else if (typeof exports !== 'undefined') {
+    // Node.js
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = laziestloader;
+    }
+    // CommonJS
+    exports.laziestloader = laziestloader;
+  } else {
+    // Global
+    window.laziestloader = laziestloader;
   }
 })();
